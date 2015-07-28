@@ -1,0 +1,313 @@
+/* http://meyerweb.com/eric/tools/css/reset/ */
+
+/* v1.0 | 20080212 */
+ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+    content:'';
+    content: none;
+}
+/* remember to define focus styles! */
+ :focus {
+    outline: 0;
+}
+/* remember to highlight inserts somehow! */
+ ins {
+    text-decoration: none;
+}
+del {
+    text-decoration: line-through;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+ table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/* `Basic HTML
+----------------------------------------------------------------------------------------------------*/
+ body {
+    font: 13px/1.5'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+    background: url(/img/background.jpg) no-repeat;
+    background-size: cover;
+}
+a:focus {
+    outline: 1px dotted;
+}
+hr {
+    border: 0 #ccc solid;
+    border-top-width: 1px;
+    clear: both;
+    height: 0;
+}
+
+html, body{
+    height: 100%;
+}
+/* `Headings
+----------------------------------------------------------------------------------------------------*/
+ h1 {
+    font-size: 25px;
+}
+h2 {
+    font-size: 23px;
+}
+h3 {
+    font-size: 21px;
+}
+h4 {
+    font-size: 19px;
+}
+h5 {
+    font-size: 17px;
+}
+h6 {
+    font-size: 15px;
+}
+/* `Spacing
+----------------------------------------------------------------------------------------------------*/
+ ol {
+    list-style: decimal;
+}
+ul {
+    list-style: disc;
+}
+li {
+    margin-left: 30px;
+}
+p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {
+    margin-bottom: 20px;
+}
+/*
+960px grid system ~ Core CSS.
+12 Columns ~ Margin left: 10px ~ Margin right: 10px
+
+Based on the 1kb grid system - http://www.1kbgrid.com/
+by Tyler Tate
+
+Created by the Grid System Generator - v1.01
+Learn more ~ http://www.gridsystemgenerator.com/
+*/
+ .grid_1 {
+    width: 60px;
+}
+.grid_2 {
+    width: 140px;
+}
+.grid_3 {
+    width: 220px;
+}
+.grid_4 {
+    width: 300px;
+}
+.grid_5 {
+    width: 380px;
+}
+.grid_6 {
+    width: 460px;
+}
+.grid_7 {
+    width: 540px;
+}
+.grid_8 {
+    width: 620px;
+}
+.grid_9 {
+    width: 700px;
+}
+.grid_10 {
+    width: 780px;
+}
+.grid_11 {
+    width: 860px;
+}
+.grid_12 {
+    width: 940px;
+}
+.column {
+    margin: 0 10px 0 10px;
+    overflow: hidden;
+    float: left;
+    display: inline;
+}
+.row {
+    width: 960px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.row .row {
+    margin: 0 -10px 0 -10px;
+    width: auto;
+    display: inline-block;
+}
+.main-container{
+    background-color: white;
+    min-height: 100%;
+    width: 964px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+/* --------------------------------------------------
+Estilos: Comunes
+-------------------------------------------------- */
+#seccionVolverAlInicio{
+    padding: 1em 0 1em 0;
+}
+
+#aVolverAlInicio{
+    text-decoration: none;
+    float: right;
+}
+#aVolverAlInicio img{
+    vertical-align: bottom;
+}
+
+/* unvisited link */
+#aVolverAlInicio:link {
+    color: #2B5DFF;
+}
+
+/* visited link */
+#aVolverAlInicio:visited {
+    color: #AA3BFF;
+}
+
+/* --------------------------------------------------
+Estilos: CDN
+-------------------------------------------------- */
+#resultadoCarga{
+    display: none;
+}
+
+.resultadoCarga{
+    padding: 1em;
+    border: 1px solid #87D37C;
+    background-color: #C8F7C5;
+}
+.resultadoCarga.local{
+    border-color: #F62459;
+    background-color: #F1A9A0;
+}
+
+/* --------------------------------------------------
+Estilos: Cache de Objetos
+-------------------------------------------------- */
+ .parrafoActivo {
+    border: 1px solid #2ECC71;
+    background-color: #C8F7C5;
+    color: #019875;
+    text-indent: .5em;
+}
+#contenedorParrafo {
+    padding: .5em 0 .5em 0;
+}
+
+/* --------------------------------------------------
+Estilos: Seleccion de Elementos
+-------------------------------------------------- */
+div.contenedorLista {
+    padding: .5em 0 .5em 0;
+}
+.itemSeleccionado{
+    border: 1px solid #22A7F0;
+}
+
+ol.listaConBorde{
+    border: 1px dotted;
+}
+
+/* --------------------------------------------------
+Estilos: Plugin
+-------------------------------------------------- */
+ legend {
+    display: block;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    border: none;
+}
+#formularioDatos {
+    border: 1px solid;
+    padding: 0.5em;
+}
+#formularioDatos input {
+    margin-bottom:0.5em;
+}
+.spanFijo {
+    min-width: 132px;
+    display: inline-block;
+    text-align: right;
+    margin-right: 4px;
+}
+input.campoObligatorio {
+    background-color:#F1A9A0;
+    border:2px solid #E08283;
+}
+span.campoObligatorio::after {
+    content:"*";
+    color:#E08283;
+}
+#btn_ValidarFormulario {
+    margin-left:160px;
+}
+/* --------------------------------------------------
+Estilos: Manipulacion DOM
+-------------------------------------------------- */
+ #tablaProductos {
+    margin-top:1em;
+    width:100%;
+}
+
+#tablaProductos tbody td{
+    text-align: center;
+}
+
+#tablaProductos tr{
+    border: 1px solid #DADFE1;
+}
+
+#tablaProductos th{
+    background-color: #ECF0F1;
+}
+/* --------------------------------------------------
+Estilos:Object Literal
+-------------------------------------------------- */
+ .articulo {
+    padding: 0.2em;
+    margin: 0.5em 0 0 0;
+    text-indent:0.5em;
+    border:1px dotted #59ABE3;
+}
+/* --------------------------------------------------
+Estilos:Uso de data
+-------------------------------------------------- */
+ #contendorProductos {
+    padding:0.5em;
+}
+
+#listaProductos li{
+    margin-bottom:0.5em;
+    border-bottom:1px solid #DADFE1;
+}
+
+.pResultado {
+    border: 1px dotted #2ECC71;
+    padding: 1em;
+    background-color:#C8F7C5;
+}
+
+

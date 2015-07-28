@@ -1,0 +1,70 @@
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>PechaKucha</title>
+    <link rel="stylesheet" type="text/css" href="/css/estilos.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        var cargadoLocalmente = false;
+        if (typeof jQuery === 'undefined') {
+            cargadoLocalmente = true;
+            document.write(unescape('%3Cscript src="/scripts/jquery.min.js"%3E%3C/script%3E'));
+        } 
+    </script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="row">
+            <div id="seccionVolverAlInicio" class="column grid_12">
+                <a id="aVolverAlInicio" href="/index.html">
+                <img src="/img/Left-Arrow-48.png">
+                <span>Volver al Indice</span>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_12">
+                <h1>Carga de JQuery desde CDN</h1>
+                 <p>Para que JQuery sea descagardo desde el CDN, verifica que puedas acceder al sitio: 
+                    <a href="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js</a>
+                 </p>
+            </div>
+        </div>
+        <div class="row">
+            <div id="resultadoCarga" class="column_grid_12"></div>
+        </div>
+    </div><!-- container -->
+
+
+<script type="text/javascript">
+//<![CDATA[ 
+(function (Init) {
+    // El objeto jQuery se pasa como parametro
+    Init(window.jQuery, window, document);
+}(function ($, window, document) {
+    // DomReady
+    $(function () {
+        // The DOM is ready!
+
+        var strResultado = cargadoLocalmente === false? 
+        "jQuery ha sido descargado desde el CDN de Google! :)" :
+        "jQuery has sido descargado localmente, verifica que tengas accesso al CDN :(";
+
+        //Crear nodo de parrafo para desplegar el resultado
+        var $pResultado = $('<p>',{
+            text : strResultado,
+            class : 'resultadoCarga'
+        }).toggleClass('local',cargadoLocalmente);
+
+        $('#resultadoCarga').html($pResultado).delay(200).fadeIn(300);
+        
+    }); //end of DOMReady
+
+
+}));
+//]]>  
+</script>
+
+
+</body>
+</html>
