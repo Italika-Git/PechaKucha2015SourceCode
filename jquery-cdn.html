@@ -3,6 +3,15 @@
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
     <title>PechaKucha</title>
     <link rel="stylesheet" type="text/css" href="/css/estilos.css">
+    <link rel="stylesheet" href="/css/highlight/styles/tomorrow-night-eighties.css">
+    <script src="/scripts/highlight.pack.js"></script>
+    <script>
+        //Resaltar el codigo fuente
+        hljs.configure({
+            tabReplace: '    '
+        });
+        hljs.initHighlightingOnLoad();
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
         var cargadoLocalmente = false;
@@ -22,16 +31,78 @@
                 </a>
             </div>
         </div>
-        <div class="row">
+        <div class="row sectionContainer">
             <div class="column grid_12">
-                <h1>Carga de JQuery desde CDN</h1>
-                 <p>Para que JQuery sea descagardo desde el CDN, verifica que puedas acceder al sitio: 
-                    <a href="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js</a>
-                 </p>
+                <h1 class="sectionHeader">Carga de JQuery desde CDN</h1>
             </div>
         </div>
         <div class="row">
-            <div id="resultadoCarga" class="column_grid_12"></div>
+            <div class="column grid_12">
+                <p>Para que JQuery sea descagardo desde el CDN, verifica que puedas acceder al sitio: 
+                    <a href="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js</a>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div id="resultadoCarga" class="column grid_12"></div>
+        </div>
+        <div class="row sectionContainer">
+            <div class="column grid_12">
+                <h4 class="sectionHeader">Código fuente:</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_12">
+                <p>1.- Hacer referencia al CDN  de google para descargar la librería de JQuery con script de fallback en caso de que el acceso a la URL no esté disponible.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <pre>
+                <code class="lang-html">
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"&gt;&lt;/script&gt;
+                </code>
+                <code class="lang-javascript">
+&lt;script&gt;
+var cargadoLocalmente = false;
+    if (typeof jQuery === 'undefined') {
+        cargadoLocalmente = true;
+        document.write(unescape('%3Cscript src="/scripts/jquery.min.js"%3E%3C/script%3E'));
+    } 
+&lt;/script&gt;
+                </code>
+            </pre>
+        </div><!-- end of precode-->
+        <div class="row">
+            <div class="column grid_12">
+                <p>2.- El siguiente código se ejecuta después del evento <em class="bold">'document.ready()'</em> que crea un nuevo nodo <em class="bold">&lt;p&gt;</em> que mostrará el mensaje de resultado dependiendo de si la librería ha sido cargada desde el CDN o localmente.</p>
+            </div>
+        </div>
+        <div class="row">
+            <pre>
+                <code class="lang-javascript">
+(function (Init) {
+    // El objeto jQuery se pasa como parametro
+    Init(window.jQuery, window, document);
+}(function ($, window, document) {
+    // DomReady
+    $(function () {
+        // The DOM is ready!
+        var strResultado = cargadoLocalmente === false? 
+        "jQuery ha sido descargado desde el CDN de Google! :)" :
+        "jQuery has sido descargado localmente, verifica que tengas accesso al CDN :(";
+
+        //Crear nodo de parrafo para desplegar el resultado
+        var $pResultado = $("&lt;p&gt;",{
+            text : strResultado,
+            class : 'resultadoCarga'
+        }).toggleClass('local',cargadoLocalmente);
+
+        $('#resultadoCarga').html($pResultado).delay(200).fadeIn(300);
+    }); //end of DOMReady
+}));
+                </code>
+            </pre>
         </div>
     </div><!-- container -->
 

@@ -1,0 +1,80 @@
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>PechaKucha</title>
+    <link rel="stylesheet" type="text/css" href="/css/estilos.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        var cargadoLocalmente = false;
+        if (typeof jQuery === 'undefined') {
+            cargadoLocalmente = true;
+            document.write(unescape('%3Cscript src="/scripts/jquery.min.js"%3E%3C/script%3E'));
+        } 
+    </script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="row">
+            <div id="seccionVolverAlInicio" class="column grid_12">
+                <a id="aVolverAlInicio" href="/index.html">
+                <img src="/img/Left-Arrow-48.png">
+                <span>Volver al Indice</span>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_12">
+                <h1>Cacheo de Objetos JQuery</h1>
+                 <p>Para que JQuery sea descagardo desde el CDN, verifica que puedas acceder al sitio:</p>
+                 <button id="btn_MostrarParrafo" type="button">Mostrar Parrafo!</button>
+            </div>
+        </div>
+        <div class="row">
+            <div id="contenedorParrafo" class="column grid_12">
+                <p style="display:none;"></p>
+            </div>
+        </div>
+    </div><!-- container -->
+
+
+<script type="text/javascript">
+//<![CDATA[ 
+(function (Init) {
+    // El objeto jQuery se pasa como parametro
+    Init(window.jQuery, window, document);
+}(function ($, window, document) {
+    // DomReady
+    $(function () {
+        // The DOM is ready!
+        /* Forma 1: Sin cache 
+        $('#btn_MostrarParrafo').on('click', function () {
+            $('#contenedorParrafo p').addClass('parrafoActivo');
+            $('#contenedorParrafo p').text("Texto del Parrafo");
+            $('#contenedorParrafo p').fadeIn("500");
+        });
+        */
+
+        /* Forma 2: Con cache
+        $('#btn_MostrarParrafo').on('click', function () {
+            var $p = $('p', '#contenedorParrafo');
+            $p.addClass('parrafoActivo');
+            $p.text("Texto del Parrafo");
+            $p.fadeIn("500");
+        });
+        */
+
+        /* Forma 3: Encadenando metodos (Chaining) */
+        $('#btn_MostrarParrafo').on('click', function () {
+            var $p = $('p', '#contenedorParrafo');
+            $p.addClass('parrafoActivo')
+                .text("Texto del Parrafo")
+                .fadeIn("500");
+        });
+    }); //end of DOMReady
+}));
+//]]>  
+</script>
+
+
+</body>
+</html>

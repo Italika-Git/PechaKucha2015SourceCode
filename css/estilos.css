@@ -43,7 +43,7 @@ del {
 ----------------------------------------------------------------------------------------------------*/
  body {
     font: 13px/1.5'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
-    background: url(/img/background.jpg) no-repeat;
+    background: url(/img/background.jpg) no-repeat #674172;
     background-size: cover;
 }
 a:focus {
@@ -184,9 +184,20 @@ Estilos: Comunes
 
 /* visited link */
 #aVolverAlInicio:visited {
-    color: #AA3BFF;
+    color: #2B5DFF;
 }
 
+.sectionHeader{
+    margin-bottom: 0.2em;
+}
+
+.sectionContainer{
+    border-bottom: 1px solid #EEEEEE;
+    margin-bottom: 2em;
+}
+.bold{
+    font-weight: 600;
+}
 /* --------------------------------------------------
 Estilos: CDN
 -------------------------------------------------- */
