@@ -35,17 +35,19 @@
         </div>
         <div class="row">
             <div class="column grid_12">
-                <p>Texto</p>
+                <p>Indique el núero de fila que desea seleccionar:</p>
             </div>
         </div>
         <div class="row">
             <div class="column grid_12">
-                <button id="btn_RealizarSeleccion" type="button">Seleccionar Celda</button>
+                <span class="bold"># de fila:</span>
+                <input id="txtFila" type="text" value="4"  autocomplete='off'>
+                <button id="btn_RealizarSeleccion" type="button">Seleccionar Fila</button>
             </div>
         </div>
         <div class="row">
             <div id="contenedorTabla" class="column grid_12">
-                <table class="pure-table">
+                <table class="pure-table pure-table-bordered">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -56,7 +58,7 @@
                     </thead>
 
                     <tbody>
-                        <tr class="pure-table-odd">
+                        <tr>
                             <td>1</td>
                             <td>Honda</td>
                             <td>Accord</td>
@@ -70,7 +72,7 @@
                             <td>2012</td>
                         </tr>
 
-                        <tr class="pure-table-odd">
+                        <tr>
                             <td>3</td>
                             <td>Hyundai</td>
                             <td>Elantra</td>
@@ -84,7 +86,7 @@
                             <td>2008</td>
                         </tr>
 
-                        <tr class="pure-table-odd">
+                        <tr>
                             <td>5</td>
                             <td>Nissan</td>
                             <td>Sentra</td>
@@ -98,7 +100,7 @@
                             <td>2009</td>
                         </tr>
 
-                        <tr class="pure-table-odd">
+                        <tr>
                             <td>7</td>
                             <td>Honda</td>
                             <td>Civic</td>
@@ -122,14 +124,44 @@
         </div>
         <div class="row">
             <div class="column grid_12">
-                <p>Explicacion
+                <p>El código siguiente muestra tres distinta formas de obtner todos los nodos 
+                    <em class="bold">&lt;tr&gt;</em> del cuerpo de la tabla. En el primer caso la cadena del selector contiene todo el <em>"camino"</em> hasta los nodos <em class="bold">&lt;tr&gt;</em>.
+                </p>
+                <p>El segundo caso se limita la cosulta de selector pasando un contexto como parámetro para limitar la consulta y que ésta no comience desde el nodo raíz del documento HTML. El tercer caso aprovecha el uso de funciones de filtrado que mejoran el desempeño del la consulta.
                 </p>
             </div>
         </div>
         <div class="row">
             <pre class="column grid_12">
                 <code class="lang-javascript">
-&lt;codigo&gt;
+var $txtFila = $('#txtFila'); //obtener refrencia al campo de texto
+
+/* Forma 1:Sin Optimización (exceso de especificación en el selector) */
+var $filas = $('#contenedorTabla table.pure-table tbody > tr');        
+
+/* Forma 2:Optimizado */
+var $filas = $('tbody tr', '#contenedorTabla');     
+
+/* Forma 3:Optimizado (usando filtros) */
+var $filas = $('#contenedorTabla').find('tbody').children();
+
+/* Boton 'Seleccionar fila' Click() */
+$('#btn_RealizarSeleccion').on('click', $filas  ,function () {
+    var n_fila = parseInt($txtFila.val());
+
+    if (isNaN(n_fila)||n_fila===0){
+        alert("El valor de la fila debe ser un número positivo mayor a cero.");
+        return;
+    };
+
+    /* El metodo eq() comienza en el índice 0, por tanto restar -1 */
+    n_fila -= 1;
+
+    $filas.removeClass('fila-activa') /* remover cualquuier fila previa activa */
+          .eq(n_fila) /* obtener el nodo 'tr' en el índice solicitado */
+          .addClass('fila-activa'); /* añadir clase 'fila-activa' */
+
+}); // end of btn_RealizarSeleccion.Click()
                 </code>
             </pre>
         </div><!-- end of precode-->
@@ -144,28 +176,36 @@
 }(function ($, window, document) {
     // DomReady
     $(function () {
+        var $txtFila = $('#txtFila'); //obtener refrencia al campo de texto
 
-        /* Forma 1:Sin Optimizacion */
-        //var $lista2_item1 = $('div.contenedorLista >ol.listaConBorde li[value="3"]');        
+        /* Forma 1:Sin Optimizacion (exceso de especificacón en el selector) */
+        //var $filas = $('#contenedorTabla table.pure-table tbody > tr');        
         
+        /* Forma 2:Optimizado */
+        //var $filas = $('tbody tr', '#contenedorTabla');        
+
+        /* Forma 3:Optimizado (usando filtros) */
+        var $filas = $('#contenedorTabla').find('tbody').children();
+
+        /* Boton 'Seleccionar fila' Click() */
+        $('#btn_RealizarSeleccion').on('click', $filas  ,function () {
+            var n_fila = parseInt($txtFila.val());
+
+            if (isNaN(n_fila)||n_fila===0){
+                alert("El valor de la fila debe ser un número positivo mayor a cero.");
+                return;
+            };
+
+            /* El metodo eq() comienza en el índice 0, por tanto restar -1 */
+            n_fila -= 1;
+
+            $filas.removeClass('fila-activa') /* remover cualquuier fila previa activa */
+                  .eq(n_fila) /* obtener el nodo 'tr' en el índice solicitado */
+                  .addClass('fila-activa'); /* añadir clase 'fila-activa' */
+
+        }); // end of btn_RealizarSeleccion.Click()
         
-        /* Forma 2:Optimizado (sin considerar ID's) */
-        //var $lista2_item1 = $('.contenedorLista li[value="3"]');
-        
-        /* Forma 3:Optimizado usando ID's */
-        //var $lista2_item1 = $('#lista2 li[value="3"]');
-        
-        /* Forma 4: Optimizado usando filtros */
-        var $lista2_item1 = $('#lista2').children('li[value="3"]');
-        
-        /* Forma 4: (alternativo) Usando 'eq' */
-        //var $lista2_item1 = $('#lista2').children().eq(2);
-        
-        $('#btn_RealizarSeleccion').on('click', $lista2_item1  ,function () {
-            $lista2_item1.addClass('itemSeleccionado');
-        });
-        
-    }); //end of jquery context
+    }); //end domReady
 })); 
 
 //]]>  

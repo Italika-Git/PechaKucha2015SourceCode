@@ -222,33 +222,19 @@ Estilos: CDN
 }
 
 /* --------------------------------------------------
-Estilos: Cache de Objetos
+Estilos: Optimizacion de Selectores
 -------------------------------------------------- */
 #contenedorTabla .pure-table{
-    margin: auto;
+    margin: 1.5em auto;
     width: 50%;    
 }
-
-.celdaActiva {
-    background-color: blue;
-}
-
 #contenedorTabla .pure-table td, #contenedorTabla .pure-table th{
     text-align: center;
 }
 
-/* --------------------------------------------------
-Estilos: Seleccion de Elementos
--------------------------------------------------- */
-div.contenedorLista {
-    padding: .5em 0 .5em 0;
-}
-.itemSeleccionado{
-    border: 1px solid #22A7F0;
-}
-
-ol.listaConBorde{
-    border: 1px dotted;
+.fila-activa {
+    background-color: #19B5FE !important;
+    color: white !important;
 }
 
 /* --------------------------------------------------
