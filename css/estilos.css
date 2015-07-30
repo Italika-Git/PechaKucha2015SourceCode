@@ -224,18 +224,17 @@ Estilos: CDN
 /* --------------------------------------------------
 Estilos: Cache de Objetos
 -------------------------------------------------- */
- .parrafoActivo {
-    border: 1px solid #2ECC71;
-    background-color: #C8F7C5;
-    color: #019875;
-    text-indent: .5em;
-}
-#contenedorParrafo {
-    padding: .5em 0 .5em 0;
+#contenedorTabla .pure-table{
+    margin: auto;
+    width: 50%;    
 }
 
-#contenedorParrafo p{
-    margin: 0.5em;
+.celdaActiva {
+    background-color: blue;
+}
+
+#contenedorTabla .pure-table td, #contenedorTabla .pure-table th{
+    text-align: center;
 }
 
 /* --------------------------------------------------
