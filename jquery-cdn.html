@@ -26,10 +26,7 @@
     <div class="main-container">
         <div class="row">
             <div id="seccionVolverAlInicio" class="column grid_12">
-                <a id="aVolverAlInicio" href="/index.html">
-                <img src="/img/Left-Arrow-48.png">
-                <span>Volver al Indice</span>
-                </a>
+                <a class="btnInicio" href="/index.html">Volver al Indice</a>
             </div>
         </div>
         <div class="row sectionContainer">
@@ -45,7 +42,7 @@
             </div>
         </div>
         <div class="row">
-            <div id="resultadoCarga" class="column grid_12"></div>
+            <div id="resultadoContainer" class="column grid_12"></div>
         </div>
         <div class="row sectionContainer">
             <div class="column grid_12">
@@ -59,7 +56,7 @@
             </div>
         </div>
         <div class="row">
-            <pre>
+            <pre class="column grid_12">
                 <code class="lang-html">
 &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"&gt;&lt;/script&gt;
                 </code>
@@ -80,7 +77,7 @@ var cargadoLocalmente = false;
             </div>
         </div>
         <div class="row">
-            <pre>
+            <pre class="column grid_12">
                 <code class="lang-javascript">
 (function (Init) {
     // El objeto jQuery se pasa como parametro
@@ -99,7 +96,7 @@ var cargadoLocalmente = false;
             class : 'resultadoCarga'
         }).toggleClass('local',cargadoLocalmente);
 
-        $('#resultadoCarga').html($pResultado).delay(200).fadeIn(300);
+        $('#resultadoContainer').html($pResultado).delay(200).fadeIn(300);
     }); //end of DOMReady
 }));
                 </code>
@@ -128,7 +125,7 @@ var cargadoLocalmente = false;
             class : 'resultadoCarga'
         }).toggleClass('local',cargadoLocalmente);
 
-        $('#resultadoCarga').html($pResultado).delay(200).fadeIn(300);
+        $('#resultadoContainer').html($pResultado).delay(200).fadeIn(300);
         
     }); //end of DOMReady
 

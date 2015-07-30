@@ -166,20 +166,25 @@ Learn more ~ http://www.gridsystemgenerator.com/
 Estilos: Comunes
 -------------------------------------------------- */
 #seccionVolverAlInicio{
-    padding: 1em 0 1em 0;
+    padding: 1em 0 2em 0;
+}
+#seccionVolverAlInicio a{
+    float: right;;
+}
+.btnInicio {
+  -webkit-border-radius: 6;
+  -moz-border-radius: 6;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 12px;
+  background: #347ed9;
+  padding: 10px 10px 10px 11px;
+  text-decoration: none;
 }
 
-#aVolverAlInicio{
-    text-decoration: none;
-    float: right;
-}
-#aVolverAlInicio img{
-    vertical-align: bottom;
-}
-
-/* unvisited link */
-#aVolverAlInicio:link {
-    color: #2B5DFF;
+.btnInicio:hover {
+  background: #3cb0fd;
+  text-decoration: none;
 }
 
 /* visited link */
@@ -198,13 +203,14 @@ Estilos: Comunes
 .bold{
     font-weight: 600;
 }
+
+
 /* --------------------------------------------------
 Estilos: CDN
 -------------------------------------------------- */
-#resultadoCarga{
+#resultadoContainer{
     display: none;
 }
-
 .resultadoCarga{
     padding: 1em;
     border: 1px solid #87D37C;
@@ -226,6 +232,10 @@ Estilos: Cache de Objetos
 }
 #contenedorParrafo {
     padding: .5em 0 .5em 0;
+}
+
+#contenedorParrafo p{
+    margin: 0.5em;
 }
 
 /* --------------------------------------------------

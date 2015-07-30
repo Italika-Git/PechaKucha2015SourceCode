@@ -1,11 +1,19 @@
-<html>
 <head>
     <meta http-equiv="Content-Language" content="es-mx">
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
     <title>PechaKucha</title>
     <link rel="stylesheet" type="text/css" href="/css/estilos.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/highlight/styles/tomorrow-night-eighties.css">
+    <script src="/scripts/highlight.pack.js"></script>
+    <script type="text/javascript" src="/scripts/chance.min.js"></script>
     <script>
+        //Resaltar el codigo fuente
+        hljs.configure({
+            tabReplace: '    '
+        });
+        hljs.initHighlightingOnLoad();
+    </script>
+        <script>
         var cargadoLocalmente = false;
         if (typeof jQuery === 'undefined') {
             cargadoLocalmente = true;
@@ -17,26 +25,80 @@
     <div class="main-container">
         <div class="row">
             <div id="seccionVolverAlInicio" class="column grid_12">
-                <a id="aVolverAlInicio" href="/index.html">
-                <img src="/img/Left-Arrow-48.png">
-                <span>Volver al Indice</span>
-                </a>
+                <a class="btnInicio" href="/index.html">Volver al Indice</a>
+            </div>
+        </div>
+        <div class="row sectionContainer">
+            <div class="column grid_12">
+                <h1 class="sectionHeader">Cacheo de Objetos JQuery</h1>
             </div>
         </div>
         <div class="row">
             <div class="column grid_12">
-                <h1>Cacheo de Objetos JQuery</h1>
-                 <p>Para que JQuery sea descagardo desde el CDN, verifica que puedas acceder al sitio:</p>
-                 <button id="btn_MostrarParrafo" type="button">Mostrar Parrafo!</button>
+                <p>El objetivo del este ejemplo es demostrar el uso de caché con los objetos creados con JQuery para modificar varias propiedades a la vez. Recuerda que cada llamada a un selector retorna un nuevo objeto lo que incrementa el uso de memoria.
+                </p>
             </div>
         </div>
         <div class="row">
             <div id="contenedorParrafo" class="column grid_12">
-                <p style="display:none;"></p>
+                <button id="btn_MostrarParrafo" type="button">Cambiar Párrafo!</button>
+                <p
+                >Parrafo sin estilo.</p>
             </div>
         </div>
-    </div><!-- container -->
+        <div class="row sectionContainer">
+            <div class="column grid_12">
+                <h4 class="sectionHeader">Código fuente:</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_12">
+                <p>El ejemplo anterior realiza varias operaciones sobre el mismo nodo <em class="bold">&lt;p&gt;</em>, por lo que resulta conveniente realizar el cacheo del nodo en una variable evitando también, repetir código.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <pre class="column grid_12">
+                <code class="lang-javascript">
+(function (Init) {
+    // El objeto jQuery se pasa como parametro
+    Init(window.jQuery, window, document);
+}(function ($, window, document) {
+    // DomReady
+    $(function () {
+        // The DOM is ready!
+        /* Forma 1: Sin cache */
+        $('#btn_MostrarParrafo').on('click', function () {
+            $('#contenedorParrafo p').text(chance.paragraph());
+            $('#contenedorParrafo p').css('background-color',chance.color());
+            $('#contenedorParrafo p').fadeTo(200,0.7);
+            $('#contenedorParrafo p').fadeTo(200,1.0);
+        });
 
+        /* Forma 2: Con cache */
+        var $p = $('p', '#contenedorParrafo');
+        $('#btn_MostrarParrafo').on('click', $p, function () {
+            $p.text(chance.paragraph());
+            $p.css('background-color',chance.color());
+            $p.fadeTo(200,0.7);
+            $p.fadeTo(200,1.0);
+        });
+        
+        /* Forma 3: Encadenando metodos (Chaining) */
+        var $p = $('p', '#contenedorParrafo');
+        $('#btn_MostrarParrafo').on('click', $p, function () {
+            $p.text(chance.paragraph())
+            .css('background-color',chance.color())
+            .fadeTo(200,0.7)
+            .fadeTo(200,1.0);
+        });
+        
+    }); //end of DOMReady
+})); 
+                </code>
+            </pre>
+        </div><!-- end of precode-->
+</div><!-- container -->
 
 <script type="text/javascript">
 //<![CDATA[ 
@@ -49,33 +111,35 @@
         // The DOM is ready!
         /* Forma 1: Sin cache 
         $('#btn_MostrarParrafo').on('click', function () {
-            $('#contenedorParrafo p').addClass('parrafoActivo');
-            $('#contenedorParrafo p').text("Texto del Parrafo");
-            $('#contenedorParrafo p').fadeIn("500");
+            $('#contenedorParrafo p').text(chance.paragraph());
+            $('#contenedorParrafo p').css('background-color',chance.color());
+            $('#contenedorParrafo p').fadeTo(200,0.7);
+            $('#contenedorParrafo p').fadeTo(200,1.0);
         });
         */
 
-        /* Forma 2: Con cache
-        $('#btn_MostrarParrafo').on('click', function () {
-            var $p = $('p', '#contenedorParrafo');
-            $p.addClass('parrafoActivo');
-            $p.text("Texto del Parrafo");
-            $p.fadeIn("500");
+        /* Forma 2: Con cache 
+        var $p = $('p', '#contenedorParrafo');
+        $('#btn_MostrarParrafo').on('click', $p, function () {
+            $p.text(chance.paragraph());
+            $p.css('background-color',chance.color());
+            $p.fadeTo(200,0.7);
+            $p.fadeTo(200,1.0);
         });
         */
-
+        
         /* Forma 3: Encadenando metodos (Chaining) */
-        $('#btn_MostrarParrafo').on('click', function () {
-            var $p = $('p', '#contenedorParrafo');
-            $p.addClass('parrafoActivo')
-                .text("Texto del Parrafo")
-                .fadeIn("500");
+        var $p = $('p', '#contenedorParrafo');
+        $('#btn_MostrarParrafo').on('click', $p, function () {
+            $p.text(chance.paragraph())
+            .css('background-color',chance.color())
+            .fadeTo(200,0.7)
+            .fadeTo(200,1.0);
         });
+
     }); //end of DOMReady
-}));
-//]]>  
+})); 
+//]]> 
 </script>
-
-
 </body>
 </html>
