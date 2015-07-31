@@ -30,16 +30,19 @@
         </div>
         <div class="row sectionContainer">
             <div class="column grid_12">
-                <h1 class="sectionHeader">Titulo</h1>
+                <h1 class="sectionHeader">Creación de nodos usando Object literal
+                </h1>
             </div>
         </div>
         <div class="row">
             <div class="column grid_12">
-                <p>Texto</p>
+                <p>De clic sobre el botón para crear un nuevo párrafo: 
+                <button id="btn_agregarParrafo" type="button" value="0">Agregar nuevo Parrafo</button>
+                </p>
             </div>
         </div>
         <div class="row">
-            <div class="column grid_12"></div>
+            <div id="parrafosContainer" class="column grid_12"></div>
         </div>
         <div class="row sectionContainer">
             <div class="column grid_12">
@@ -55,14 +58,95 @@
         <div class="row">
             <pre class="column grid_12">
                 <code class="lang-javascript">
-&lt;codigo&gt;
+function AgregarNuevoParrafo($contenedor) {
+    //numero de parrafos
+    var count = $contenedor.children().length;
+    var parrafoTexto = "Parrafo " + (count + 1);
+    
+    //Forma 1: usando string
+    var bkgColor = getRandomColor();
+    var strP = "&lt;p class='articulo' " +
+        " style='height:25px; background-color:" + bkgColor + ";' &gt;" +
+        parrafoTexto + "&lt;/p&gt;";
+    
+    $contenedor.append(strP);        
+    
+    //Forma 2: crearndo nodo desde JQuery
+    var $p = $('&lt;p&gt;', {
+        class: 'articulo',
+        text: parrafoTexto,
+        css: {
+            height: '25px',
+            backgroundColor: getRandomColor()
+        }
+    });
+
+    //agregar al contendor 
+    $contenedor.append($p);
+}
                 </code>
             </pre>
         </div><!-- end of precode-->
 </div><!-- container -->
 
 <script type="text/javascript">
-//<![CDATA[ 
+//<![CDATA[
+(function (Init) {
+    // El objeto jQuery se pasa como parametro
+    Init(window.jQuery, window, document);
+}(function ($, window, document) {
+    // DomReady
+    $(function () {
+        var $contenedor = $('#parrafosContainer');
+
+        //evento click del boton para crear/remover tabla
+        $('#btn_agregarParrafo').on('click', $contenedor, function () {
+            AgregarNuevoParrafo($contenedor);
+        });
+    }); //end of 'domReady'
+
+    function AgregarNuevoParrafo($contenedor) {
+        //numero de parrafos
+        var count = $contenedor.children().length;
+        var parrafoTexto = "Parrafo " + (count + 1);
+        
+        /*
+        //Forma 1: usando string
+        var bkgColor = getRandomColor();
+        var strP = "<p class='articulo' " +
+            " style='height:25px; background-color:" + bkgColor + ";' >" +
+            parrafoTexto + "</p>";
+        
+        $contenedor.append(strP);
+        */        
+        
+       
+        //Forma 2: crearndo nodo desde JQuery
+        var $p = $('<p>', {
+            class: 'articulo',
+            text: parrafoTexto,
+            css: {
+                height: '25px',
+                backgroundColor: getRandomColor()
+            }
+        });
+
+        //agregar al contendor 
+        $contenedor.append($p);
+    }
+
+}));
+
+
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+} 
 //]]>  
 </script>
 </body>
