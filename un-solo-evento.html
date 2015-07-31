@@ -1,0 +1,197 @@
+<head>
+    <meta http-equiv="Content-Language" content="es-mx">
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>PechaKucha</title>
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <link rel="stylesheet" href="css/highlight/styles/tomorrow-night-eighties.css">
+    <script src="scripts/highlight.pack.js"></script>
+    <script>
+        //Resaltar el codigo fuente
+        hljs.configure({
+            tabReplace: '    '
+        });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        var cargadoLocalmente = false;
+        if (typeof jQuery === 'undefined') {
+            cargadoLocalmente = true;
+            document.write(unescape('%3Cscript src="/scripts/jquery.min.js"%3E%3C/script%3E'));
+        } 
+    </script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="row">
+            <div id="seccionVolverAlInicio" class="column grid_12">
+                <a class="btnInicio" href="index.html">Volver al Indice</a>
+            </div>
+        </div>
+        <div class="row sectionContainer">
+            <div class="column grid_12">
+                <h1 class="sectionHeader">Titulo</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div id="instruccionesContainer" class="column grid_12">
+                <p>Seleccione el tipo de registro del evento <em class="bold">"Click()"</em>.</p>
+                <ul>
+                    <li><input type="radio" name="opt" value="0" autocomplete="off">
+                        <span><em class="bold">Múltiples Handlers:</em> Se registra un evento <em class="bold">"Click()"</em> por cada nodo <em class="bold">&lt;li&gt;</em> de la lista.
+                        </span>
+                    </li>
+                    <li><input type="radio" name="opt" value="1" autocomplete="off">
+                        <span><em class="bold">Un Handler:</em> Se registra un sólo evento <em class="bold">"Click()"</em> en el nodo padre <em class="bold">&lt;ul&gt;</em> de la lista y se delega hasta que el evento alcance los nodos <em class="bold">&lt;li&gt;</em>.
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_6">
+                 <ol id="listaProductos">
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3</li>
+                    <li>Item 4</li>
+                    <li>Item 5</li>
+                    <li>Item 6</li>
+                    <li>Item 7</li>
+                    <li>Item 8</li>
+                    <li>Item 9</li>
+                    <li>Item 10</li>
+                    <li>Item 11</li>
+                    <li>Item 12</li>
+                    <li>Item 13</li>
+                    <li>Item 14</li>
+                    <li>Item 15</li>
+                    <li>Item 16</li>
+                    <li>Item 17</li>
+                    <li>Item 18</li>
+                    <li>Item 19</li>
+                    <li>Item 20</li>
+                </ol>
+            </div>
+            <div id="LogContainer" class="column grid_6">
+                <h5 class="logEntry">Log eventos registrados:</h5>
+            </div>
+        </div>
+        <div class="row sectionContainer">
+            <div class="column grid_12">
+                <h4 class="sectionHeader">Código fuente:</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_12">
+                <p>La <em>delegación de eventos</em> nos permite registrar un único evento en el nodo padre que comenzará a propagar el evento a los nodos descendientes hasta que encuentre el nodo que coincide <em>&laquo;matches&raquo;</em> con el selector indicado en el segundo parametro de la función <em class="bold">on()</em>.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <pre class="column grid_12">
+                <code class="lang-javascript">
+/* Forma 1: crear evento por cada elemento de la lista */
+$('#listaProductos li').on("click", function () {
+    alert($(this).text());
+});
+
+/* Forma 2: crear evento en el nodo padre y delegarlo a los hijos */
+$('#listaProductos').on("click", 'li' ,function () {
+    alert($(this).text());
+});
+                </code>
+            </pre>
+        </div><!-- end of precode-->
+</div><!-- container -->
+
+<script type="text/javascript">
+//<![CDATA[ 
+(function (Init) {
+    // El objeto jQuery se pasa como parametro
+    Init(window.jQuery, window, document);
+}(function ($, window, document) {
+    // DomReady
+    $(function () {
+
+
+        $('input[type=radio][name=opt]').on('change' ,function(){
+            var un_handler = this.value == 1;
+
+            //registrar evento(s) click
+            var $nodosRegistrados = RegistrarEventoClick(un_handler);
+
+            //remover entradas previas del log
+            $('#LogContainer').find('p').remove();
+
+            //desplegar los eventos registrados
+            $nodosRegistrados.listHandlers('click',function(element,data){
+                var $LogContainer = $('#LogContainer');
+                var $p = $('<p>',{
+                    text : 'Nodo registrado: <' + element.nodeName.toLowerCase() + '>, Evento: ' +  data,
+                    class : 'logEntry'
+                });
+                $LogContainer.append($p);
+
+            });
+
+        });
+
+    }); //end of 'domReady'
+
+    function RegistrarEventoClick(un_handler){
+        //remover eventos previamente registrados
+        RemoverEventosRegistrados(un_handler);
+
+        var $nodosRegistrados;
+
+        if (un_handler) {
+            /* registrar evento 'click' en el nodo padre y delegarlo a los nodos 'li' */
+            $nodosRegistrados = $('#listaProductos').on("click", 'li',ListaItemClick);
+        }else{
+            //registrar evento 'click' en cada nodo 'li' de la lista
+            $nodosRegistrados = $('#listaProductos li').on("click", ListaItemClick);
+        }
+
+        return $nodosRegistrados;
+    }
+
+    function RemoverEventosRegistrados(un_handler){
+        if (un_handler) {
+            //remover los handlers de cada nodo 'li'
+            $('#listaProductos li').off('click');
+        }else{
+            //remover el handler del nodo 'ol'
+            $('#listaProductos').off('click');
+        }
+    }
+
+    function ListaItemClick(){
+        var itemText = $(this).text();
+        alert(itemText);
+    }
+
+}));
+
+    /* Event Logger */
+    $.extend($.fn, {
+        listHandlers : function(events, outputFunction) {
+            return this.each(function(i){
+                var elem = this,
+                dEvents = $._data(this, 'events');
+                if (!dEvents) {return;}
+                $.each(dEvents, function(name, handler){
+                    if((new RegExp('^(' + (events === '*' ? '.+' : events.replace(',','|').replace(/^on/i,'')) + ')$' ,'i')).test(name)) {
+                       $.each(handler, function(i,handler){
+                           outputFunction(elem, '[' + name + ']');
+                       });
+                   }
+               });
+            });
+        }//end of handlers
+    });//fin de extend
+
+//]]>  
+</script>
+</body>
+</html>

@@ -238,6 +238,49 @@ Estilos: Optimizacion de Selectores
 }
 
 /* --------------------------------------------------
+Estilos: Un solo Handler
+-------------------------------------------------- */
+#listaProductos li{
+    margin-bottom:0.5em;
+    border-bottom:1px solid #DADFE1;
+    cursor: pointer;
+}
+#instruccionesContainer p{
+    margin-bottom: 0.5em;
+}
+#instruccionesContainer ul{
+    list-style-type: none;
+}
+
+#instruccionesContainer li{
+    margin-left: 0.5em;
+    margin-bottom: 1.0em;
+}
+
+#instruccionesContainer span{
+    margin-left: 0.5em;
+}
+#LogContainer{
+    background-color: #2C3E50;
+    min-height: 560px;
+}
+
+.logEntry{
+    text-indent: 1em;
+    margin-bottom: 0.5em;
+    color: #2ECC71;
+    font-family:  "Lucida Console", Monaco, monospace;
+}
+/* --------------------------------------------------
+Estilos:Object Literal
+-------------------------------------------------- */
+ .articulo {
+    padding: 0.2em;
+    margin: 0.5em 0 0 0;
+    text-indent:0.5em;
+    border:1px dotted #59ABE3;
+}
+/* --------------------------------------------------
 Estilos: Plugin
 -------------------------------------------------- */
  legend {
@@ -270,50 +313,7 @@ span.campoObligatorio::after {
 #btn_ValidarFormulario {
     margin-left:160px;
 }
-/* --------------------------------------------------
-Estilos: Manipulacion DOM
--------------------------------------------------- */
- #tablaProductos {
-    margin-top:1em;
-    width:100%;
-}
 
-#tablaProductos tbody td{
-    text-align: center;
-}
 
-#tablaProductos tr{
-    border: 1px solid #DADFE1;
-}
-
-#tablaProductos th{
-    background-color: #ECF0F1;
-}
-/* --------------------------------------------------
-Estilos:Object Literal
--------------------------------------------------- */
- .articulo {
-    padding: 0.2em;
-    margin: 0.5em 0 0 0;
-    text-indent:0.5em;
-    border:1px dotted #59ABE3;
-}
-/* --------------------------------------------------
-Estilos:Uso de data
--------------------------------------------------- */
- #contendorProductos {
-    padding:0.5em;
-}
-
-#listaProductos li{
-    margin-bottom:0.5em;
-    border-bottom:1px solid #DADFE1;
-}
-
-.pResultado {
-    border: 1px dotted #2ECC71;
-    padding: 1em;
-    background-color:#C8F7C5;
-}
 
 

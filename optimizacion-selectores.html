@@ -13,7 +13,8 @@
         });
         hljs.initHighlightingOnLoad();
     </script>
-        <script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
         var cargadoLocalmente = false;
         if (typeof jQuery === 'undefined') {
             cargadoLocalmente = true;
@@ -124,10 +125,10 @@
         </div>
         <div class="row">
             <div class="column grid_12">
-                <p>El código siguiente muestra tres distinta formas de obtner todos los nodos 
-                    <em class="bold">&lt;tr&gt;</em> del cuerpo de la tabla. En el primer caso la cadena del selector contiene todo el <em>"camino"</em> hasta los nodos <em class="bold">&lt;tr&gt;</em>.
+                <p>El código siguiente muestra tres distintas formas de obtener todos los nodos 
+                    <em class="bold">&lt;tr&gt;</em> del cuerpo de la tabla. En el primer caso la cadena del selector contiene todo el <em>"camino"</em> hasta que se debe recorrer hasta llegar a los nodos <em class="bold">&lt;tr&gt;</em>.
                 </p>
-                <p>El segundo caso se limita la cosulta de selector pasando un contexto como parámetro para limitar la consulta y que ésta no comience desde el nodo raíz del documento HTML. El tercer caso aprovecha el uso de funciones de filtrado que mejoran el desempeño del la consulta.
+                <p>El segundo caso restringe la consulta del selector pasando el elemento <em class="bold">#contenedorTabla</em> como contexto en el segúndo parámetro lo que hará que la consulta no comience desde el nodo raíz del documento HTML. El tercer caso aprovecha el uso de funciones de filtrado que mejoran el desempeño del la consulta.
                 </p>
             </div>
         </div>
