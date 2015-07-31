@@ -220,6 +220,12 @@ Estilos: CDN
     border-color: #F62459;
     background-color: #F1A9A0;
 }
+/* --------------------------------------------------
+Estilos: Cacheo de objetos
+-------------------------------------------------- */
+#btn_MostrarParrafo{
+    margin-bottom: 1em;
+}
 
 /* --------------------------------------------------
 Estilos: Optimizacion de Selectores
