@@ -1,8 +1,13 @@
+<html>
 <head>
     <meta http-equiv="Content-Language" content="es-mx">
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <link rel="shortcut icon" href="img/favicon.ico">
     <title>PechaKucha</title>
     <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <!--[if lte IE 9]>
+    <script type='text/javascript'> location.href = 'errorIE.html';</script>
+    <![endif]-->
     <link rel="stylesheet" href="css/highlight/styles/tomorrow-night-eighties.css">
     <link rel="stylesheet" href="css/tables-min.css">
     <script src="scripts/highlight.pack.js"></script>
@@ -18,7 +23,7 @@
         var cargadoLocalmente = false;
         if (typeof jQuery === 'undefined') {
             cargadoLocalmente = true;
-            document.write(unescape('%3Cscript src="/scripts/jquery.min.js"%3E%3C/script%3E'));
+            document.write(unescape('%3Cscript src="scripts/jquery.min.js"%3E%3C/script%3E'));
         } 
     </script>
 </head>
@@ -135,7 +140,7 @@
         <div class="row">
             <pre class="column grid_12">
                 <code class="lang-javascript">
-var $txtFila = $('#txtFila'); //obtener refrencia al campo de texto
+var $txtFila = $('#txtFila'); //obtener referencia al campo de texto
 
 /* Forma 1:Sin Optimización (exceso de especificación en el selector) */
 var $filas = $('#contenedorTabla table.pure-table tbody > tr');        

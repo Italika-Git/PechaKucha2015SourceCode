@@ -1,3 +1,4 @@
+<html>
 <head>
     <meta http-equiv="Content-Language" content="es-mx">
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
@@ -5,14 +6,14 @@
     <title>PechaKucha</title>
     <link rel="stylesheet" type="text/css" href="css/estilos.css">
     <!--[if lte IE 9]>
-    <script type='text/javascript'> location.href = '../errorControl/IE.aspx';</script>
+    <script type='text/javascript'> location.href = 'errorIE.html';</script>
     <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
         var cargadoLocalmente = false;
         if (typeof jQuery === 'undefined') {
             cargadoLocalmente = true;
-            document.write(unescape('%3Cscript src="/scripts/jquery.min.js"%3E%3C/script%3E'));
+            document.write(unescape('%3Cscript src="scripts/jquery.min.js"%3E%3C/script%3E'));
         } 
     </script>
 </head>
@@ -25,7 +26,8 @@
         </div>
         <div class="row">
             <div class="column grid_12">
-                <p>Texto</p>
+                <p>El siguiente material contiene código de ejemplo correspondiente a las conferencias <em class="bold">"Jquery: Tips y mejores prácticas"</em> e <em class="bold">"Introducción al uso Plantillas en la Web"</em>.
+                </p>
             </div>
         </div>
         <div class="row sectionContainer">
@@ -35,13 +37,18 @@
         </div>
         <div class="row">
             <div class="column grid_12">
-                <ol>
+                <ol class="listaOpciones">
                     <li><a href="jquery-cdn.html">Descarga de JQuery desde CDN</a></li>
                     <li><a href="cacheo-objetos.html">Cacheo de Objetos JQuery</a></li>
                     <li><a href="optimizacion-selectores.html">Optimización de Selectores</a></li>
-                    <li><a href="un-solo-evento.html">Un sólo Handler <em>(Delegación de eventos)</em</a></li>
+                    <li><a href="un-solo-evento.html">Un sólo Handler <em>(Delegación de eventos)</em></a></li>
                     <li><a href="object-literal.html">Creación de nodos usando <em>Object literal</em></a></li>
                 </ol>
+            </div>
+        </div>
+        <div class="row sectionContainer">
+            <div class="column grid_12">
+                <h4 class="sectionHeader">Introducción al uso Plantillas en la Web</h4>
             </div>
         </div>
 </div><!-- container -->

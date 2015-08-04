@@ -2,8 +2,12 @@
 <head>
     <meta http-equiv="Content-Language" content="es-mx">
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <link rel="shortcut icon" href="img/favicon.ico">
     <title>PechaKucha</title>
     <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <!--[if lte IE 9]>
+    <script type='text/javascript'> location.href = 'errorIE.html';</script>
+    <![endif]-->
     <link rel="stylesheet" href="css/highlight/styles/tomorrow-night-eighties.css">
     <script src="scripts/highlight.pack.js"></script>
     <script>
@@ -18,7 +22,7 @@
         var cargadoLocalmente = false;
         if (typeof jQuery === 'undefined') {
             cargadoLocalmente = true;
-            document.write(unescape('%3Cscript src="/scripts/jquery.min.js"%3E%3C/script%3E'));
+            document.write(unescape('%3Cscript src="scripts/jquery.min.js"%3E%3C/script%3E'));
         } 
     </script>
 </head>
