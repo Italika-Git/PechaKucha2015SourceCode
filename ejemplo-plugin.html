@@ -1,0 +1,146 @@
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="es-mx">
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <title>PechaKucha</title>
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <!--[if lte IE 9]>
+    <script type='text/javascript'> location.href = 'errorIE.html';</script>
+    <![endif]-->
+    <link rel="stylesheet" href="css/highlight/styles/tomorrow-night-eighties.css">
+    <script src="scripts/highlight.pack.js"></script>
+    <script>
+        //Resaltar el codigo fuente
+        hljs.configure({
+            tabReplace: '    '
+        });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        var cargadoLocalmente = false;
+        if (typeof jQuery === 'undefined') {
+            cargadoLocalmente = true;
+            document.write(unescape('%3Cscript src="scripts/jquery.min.js"%3E%3C/script%3E'));
+        } 
+    </script>
+    <!-- plugin para marcar campos obligatorios -->
+    <script src="scripts/valida-plugin.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="row">
+            <div id="seccionVolverAlInicio" class="column grid_12">
+                <a class="btnInicio" href="index.html">Volver al Indice</a>
+            </div>
+        </div>
+        <div class="row sectionContainer">
+            <div class="column grid_12">
+                <h1 class="sectionHeader">Creación de Plugin</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_12">
+                <p>El siguiente ejemplo valida los campos del formulario que se encuentran vacíos. Esto se realiza mediante el uso de un plugin que obtiene el valor del campo de texto a evaluar y dependiendo de si éste está vacío, anexa  un clase CSS que establece en rojo el color de fondo del elemento.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_12">
+                <fieldset id="formularioDatos">
+                    <legend>Complete el formulario para continuar:</legend> <span class="spanFijo">Nombre:</span>
+
+                    <input type="text" />
+                    <br/> <span class="spanFijo">Email:</span>
+
+                    <input type="text" />
+                    <br/> <span class="spanFijo">Fecha de Nacimiento:</span>
+
+                    <input type="text" />
+                    <br/>
+                    <button id="btn_ValidarFormulario" type="button">Validar Formulario</button>
+                </fieldset>
+            </div>
+        </div>
+        <div class="row sectionContainer">
+            <div class="column grid_12">
+                <h4 class="sectionHeader">Código fuente:</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_12">
+                <p>Vemos que el  plugin no es más que una función que se agrega o <em>&laquo;extiende&raquo;</em> a la lista de métodos de jQuery. Para el ejemplo mostrado, la función evalua el valor del nodo <em class="bold">(this)</em> del objeto jQuery que está invocando la función <em>"ValidarObligatorio()"</em> el resultado <em>&laquo;true o false&raquo;</em> se pasa como segundo argumento de la función <a href="http://api.jquery.com/toggleClass/"><em>"toggleClass()"</em></a> que activará o desactivará la clase CSS <em>"campoObligatorio"</em> según sea el caso.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <pre class="column grid_12">
+                <code class="lang-javascript">
+$.extend($.fn, {
+    ValidarObligatorio: function () {
+        return this.each(function () {
+             //validar si el campo está vacio
+            var vacio = this.value.trim() === "";
+            //pasar 'this' a objeto JQuery
+            var campo = $(this);
+             /*Añadir y quitar clase 'campoObligatorio' 
+             dependiendo si el valor del campo está vacío */
+            campo.toggleClass('campoObligatorio',vacio);
+            /*También agregar/quitar clase al nodo previo 
+            inmediato (etiqueta 'span') */
+            campo.prev().toggleClass('campoObligatorio',vacio);
+        });
+    } //fin de la funcion
+});//fin de extend
+                </code>
+            </pre>
+        </div><!-- end of precode-->
+        <div class="row">
+            <div class="column grid_12">
+                <p>La manera de usar el plugin es igual a como si se tratara de cualquier otra función de la API: 
+                </p>
+                <ol>
+                    <li>Se obtiene el o los objetos jQuery sobre los que se aplicará la función.
+                    </li>
+                    <li>Se invoca la función <em>"ValidarObligatorio()"</em> sobre el objeto jQuery obtenido del selector.
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <pre class="column grid_12">
+                <code class="lang-javascript">
+var $campos = $('#formularioDatos').find('input').filter('[type="text"]');
+        
+//Validar los campos al hacer clic en el boton
+$('#btn_ValidarFormulario').on('click',$campos,function(){
+    $campos.ValidarObligatorio();
+});
+                </code>
+            </pre>
+        </div><!-- end of precode-->
+</div><!-- container -->
+
+<script type="text/javascript">
+//<![CDATA[
+(function (Init) {
+    // El objeto jQuery se pasa como parametro
+    Init(window.jQuery, window, document);
+}(function ($, window, document) {
+    // DomReady
+    $(function () {
+        //Guardar en cache los campos
+        var $campos = $('#formularioDatos').find('input').filter('[type="text"]');
+        
+        //Validar los campos al hacer clic en el boton
+        $('#btn_ValidarFormulario').on('click',$campos,function(){
+            $campos.ValidarObligatorio();
+        });
+        
+    }); //end of 'domReady'
+})); 
+//]]>  
+</script>
+</body>
+</html>
