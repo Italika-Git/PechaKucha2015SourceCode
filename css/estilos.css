@@ -203,7 +203,21 @@ Estilos: Comunes
 .bold{
     font-weight: 600;
 }
+/* --------------------------------------------------
+Estilos: Index
+-------------------------------------------------- */
+#pechaKucha-Container{
+    margin-top: 2em;
+}
 
+#pechaKucha-Container img{
+    vertical-align: middle;
+}
+
+#pechaKucha-Container h3{
+    margin: 0.5em 0;
+    display: inline-block;
+}
 
 /* --------------------------------------------------
 Estilos: CDN
