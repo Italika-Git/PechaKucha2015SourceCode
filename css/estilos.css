@@ -42,7 +42,7 @@ del {
 /* `Basic HTML
 ----------------------------------------------------------------------------------------------------*/
  body {
-    font: 13px/1.5'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+    font: 13px/1.5 'Open Sans', sans-serif;;
     background: url(../img/background.jpg) no-repeat #674172;
     background-size: cover;
 }
