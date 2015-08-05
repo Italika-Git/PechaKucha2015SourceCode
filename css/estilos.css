@@ -201,17 +201,21 @@ Estilos: Comunes
 /* --------------------------------------------------
 Estilos: Index
 -------------------------------------------------- */
-#pechaKucha-Container{
+.logo-and-text{
     margin-top: 2em;
 }
 
-#pechaKucha-Container img{
+.logo-and-text img{
     vertical-align: middle;
 }
 
-#pechaKucha-Container h3{
+.logo-and-text h3, .logo-and-text h4{
     margin: 0.5em 0;
     display: inline-block;
+}
+
+.logo-and-text h4{
+    margin-left: .5em;
 }
 
 .listaOpciones {

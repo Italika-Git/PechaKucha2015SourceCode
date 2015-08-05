@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="es-mx">
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <title>PechaKucha</title>
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <!--[if lte IE 9]>
+    <script type='text/javascript'> location.href = 'errorIE.html';</script>
+    <![endif]-->
+    <link rel="stylesheet" href="css/highlight/styles/tomorrow-night-eighties.css">
+    <script src="scripts/highlight.pack.js"></script>
+    <script>
+        //Resaltar el codigo fuente
+        hljs.configure({
+            tabReplace: '    '
+        });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        var cargadoLocalmente = false;
+        if (typeof jQuery === 'undefined') {
+            cargadoLocalmente = true;
+            document.write(unescape('%3Cscript src="scripts/jquery.min.js"%3E%3C/script%3E'));
+        } 
+    </script>
+    <script type="text/javascript" src="scripts/handlebars.min.js" ></script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="row">
+            <div id="seccionVolverAlInicio" class="column grid_12">
+                <a class="btnInicio" href="index.html">Volver al Indice</a>
+            </div>
+        </div>
+        <div class="row sectionContainer">
+            <div class="column grid_12">
+                <h1 class="sectionHeader">Titulo</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_12">
+                <p>Texto</p>
+            </div>
+        </div>
+        <div class="row">
+            <div id="content-placeholder" class="column grid_12"></div>
+        </div>
+        <div class="row sectionContainer">
+            <div class="column grid_12">
+                <h4 class="sectionHeader">Código fuente:</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_12">
+                <p>Explicacion
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <pre class="column grid_12">
+                <code class="lang-javascript">
+&lt;codigo&gt;
+                </code>
+            </pre>
+        </div><!-- end of precode-->
+</div><!-- container -->
+
+<!-- Temaplates -->
+<script id="address-template" type="text/x-handlebars-template">
+    <p>You can find me in {{city}}. My address is {{number}} {{street}}.
+    </p>
+</script>
+
+<!-- Comienzo de script -->
+<script type="text/javascript">
+(function (yourcode) {
+    // The global jQuery object is passed as a parameter
+    yourcode(window.jQuery, window, document);
+}(function ($, window, document) {
+    // Listen for the jQuery ready event on the document
+    $(function () {
+     
+    // Grab the template script
+  var theTemplateScript = $("#address-template").html();
+
+  // Compile the template
+  var theTemplate = Handlebars.compile(theTemplateScript);
+
+  // Define our data object
+  var context={
+    "city": "London",
+    "street": "Baker Street",
+    "number": "221B"
+  };
+
+  // Pass our data to the template
+  var theCompiledHtml = theTemplate(context);
+
+  // Add the compiled html to the page
+  $('#content-placeholder').html(theCompiledHtml);
+      
+    }); //end of jquery context
+}));
+</script>
+</body>
+</html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="es-mx">
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <title>PechaKucha</title>
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <!--[if lte IE 9]>
+    <script type='text/javascript'> location.href = 'errorIE.html';</script>
+    <![endif]-->
+    <link rel="stylesheet" href="css/highlight/styles/tomorrow-night-eighties.css">
+    <script src="scripts/highlight.pack.js"></script>
+    <script>
+        //Resaltar el codigo fuente
+        hljs.configure({
+            tabReplace: '    '
+        });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        var cargadoLocalmente = false;
+        if (typeof jQuery === 'undefined') {
+            cargadoLocalmente = true;
+            document.write(unescape('%3Cscript src="scripts/jquery.min.js"%3E%3C/script%3E'));
+        } 
+    </script>
+    <script type="text/javascript" src="scripts/handlebars.min.js" ></script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="row">
+            <div id="seccionVolverAlInicio" class="column grid_12">
+                <a class="btnInicio" href="index.html">Volver al Indice</a>
+            </div>
+        </div>
+        <div class="row sectionContainer">
+            <div class="column grid_12">
+                <h1 class="sectionHeader">Titulo</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_12">
+                <p>Texto</p>
+            </div>
+        </div>
+        <div class="row">
+            <div id="content-placeholder" class="column grid_12"></div>
+        </div>
+        <div class="row sectionContainer">
+            <div class="column grid_12">
+                <h4 class="sectionHeader">Código fuente:</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_12">
+                <p>Explicacion
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <pre class="column grid_12">
+                <code class="lang-javascript">
+&lt;codigo&gt;
+                </code>
+            </pre>
+        </div><!-- end of precode-->
+</div><!-- container -->
+
+<!-- Temaplates -->
+<script id="address-template" type="text/x-handlebars-template">
+    <p>You can find me in {{city}}. My address is {{number}} {{street}}.
+    </p>
+</script>
+
+<!-- Comienzo de script -->
+<script type="text/javascript">
+(function (yourcode) {
+    // The global jQuery object is passed as a parameter
+    yourcode(window.jQuery, window, document);
+}(function ($, window, document) {
+    // Listen for the jQuery ready event on the document
+    $(function () {
+     
+    // Grab the template script
+  var theTemplateScript = $("#address-template").html();
+
+  // Compile the template
+  var theTemplate = Handlebars.compile(theTemplateScript);
+
+  // Define our data object
+  var context={
+    "city": "London",
+    "street": "Baker Street",
+    "number": "221B"
+  };
+
+  // Pass our data to the template
+  var theCompiledHtml = theTemplate(context);
+
+  // Add the compiled html to the page
+  $('#content-placeholder').html(theCompiledHtml);
+      
+    }); //end of jquery context
+}));
+</script>
+</body>
+</html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="es-mx">
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <title>PechaKucha</title>
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <!--[if lte IE 9]>
+    <script type='text/javascript'> location.href = 'errorIE.html';</script>
+    <![endif]-->
+    <link rel="stylesheet" href="css/highlight/styles/tomorrow-night-eighties.css">
+    <script src="scripts/highlight.pack.js"></script>
+    <script>
+        //Resaltar el codigo fuente
+        hljs.configure({
+            tabReplace: '    '
+        });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        var cargadoLocalmente = false;
+        if (typeof jQuery === 'undefined') {
+            cargadoLocalmente = true;
+            document.write(unescape('%3Cscript src="scripts/jquery.min.js"%3E%3C/script%3E'));
+        } 
+    </script>
+    <script type="text/javascript" src="scripts/handlebars.min.js" ></script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="row">
+            <div id="seccionVolverAlInicio" class="column grid_12">
+                <a class="btnInicio" href="index.html">Volver al Indice</a>
+            </div>
+        </div>
+        <div class="row sectionContainer">
+            <div class="column grid_12">
+                <h1 class="sectionHeader">Titulo</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_12">
+                <p>Texto</p>
+            </div>
+        </div>
+        <div class="row">
+            <div id="content-placeholder" class="column grid_12"></div>
+        </div>
+        <div class="row sectionContainer">
+            <div class="column grid_12">
+                <h4 class="sectionHeader">Código fuente:</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_12">
+                <p>Explicacion
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <pre class="column grid_12">
+                <code class="lang-javascript">
+&lt;codigo&gt;
+                </code>
+            </pre>
+        </div><!-- end of precode-->
+</div><!-- container -->
+
+<!-- Temaplates -->
+<script id="address-template" type="text/x-handlebars-template">
+    <p>You can find me in {{city}}. My address is {{number}} {{street}}.
+    </p>
+</script>
+
+<!-- Comienzo de script -->
+<script type="text/javascript">
+(function (yourcode) {
+    // The global jQuery object is passed as a parameter
+    yourcode(window.jQuery, window, document);
+}(function ($, window, document) {
+    // Listen for the jQuery ready event on the document
+    $(function () {
+     
+    // Grab the template script
+  var theTemplateScript = $("#address-template").html();
+
+  // Compile the template
+  var theTemplate = Handlebars.compile(theTemplateScript);
+
+  // Define our data object
+  var context={
+    "city": "London",
+    "street": "Baker Street",
+    "number": "221B"
+  };
+
+  // Pass our data to the template
+  var theCompiledHtml = theTemplate(context);
+
+  // Add the compiled html to the page
+  $('#content-placeholder').html(theCompiledHtml);
+      
+    }); //end of jquery context
+}));
+</script>
+</body>
+</html>
