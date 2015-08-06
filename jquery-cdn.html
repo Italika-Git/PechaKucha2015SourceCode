@@ -62,17 +62,15 @@
         </div>
         <div class="row">
             <pre class="column grid_12">
-                <code class="lang-html">
+                <code class="html">
 &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"&gt;&lt;/script&gt;
                 </code>
-                <code class="lang-javascript">
-&lt;script&gt;
+                <code class="javascript">
 var cargadoLocalmente = false;
     if (typeof jQuery === 'undefined') {
         cargadoLocalmente = true;
         document.write(unescape('%3Cscript src="/scripts/jquery.min.js"%3E%3C/script%3E'));
     } 
-&lt;/script&gt;
                 </code>
             </pre>
         </div><!-- end of precode-->
@@ -83,7 +81,7 @@ var cargadoLocalmente = false;
         </div>
         <div class="row">
             <pre class="column grid_12">
-                <code class="lang-javascript">
+                <code class="javascript">
 (function (Init) {
     // El objeto jQuery se pasa como parametro
     Init(window.jQuery, window, document);
@@ -97,9 +95,9 @@ var cargadoLocalmente = false;
 
         //Crear nodo de parrafo para desplegar el resultado
         var $pResultado = $("&lt;p&gt;",{
-            text : strResultado,
-            class : 'resultadoCarga'
-        }).toggleClass('local',cargadoLocalmente);
+            "text" : strResultado,
+            "class" : "resultadoCarga"
+        }).toggleClass("local",cargadoLocalmente);
 
         $('#resultadoContainer').html($pResultado).delay(200).fadeIn(300);
     }); //end of DOMReady

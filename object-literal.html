@@ -65,7 +65,7 @@
         </div>
         <div class="row">
             <pre class="column grid_12">
-                <code class="lang-javascript">
+                <code class="javascript">
 function AgregarNuevoParrafo($contenedor) {
     //numero de parrafos
     var count = $contenedor.children().length;
@@ -79,13 +79,13 @@ function AgregarNuevoParrafo($contenedor) {
     
     $contenedor.append(strP);        
     
-    //Forma 2: crearndo nodo desde JQuery
+    //Forma 2: creando nodo desde JQuery
     var $p = $('&lt;p&gt;', {
-        class: 'articulo',
-        text: parrafoTexto,
-        css: {
-            height: '25px',
-            backgroundColor: getRandomColor()
+        "class": "articulo",
+        "text" : parrafoTexto,
+        "css"  : {
+            "height": "5px",
+            "backgroundColor": getRandomColor()
         }
     });
 
@@ -129,7 +129,7 @@ function AgregarNuevoParrafo($contenedor) {
         */        
         
        
-        //Forma 2: crearndo nodo desde JQuery
+        //Forma 2: creando nodo desde JQuery
         var $p = $('<p>', {
             class: 'articulo',
             text: parrafoTexto,

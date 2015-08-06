@@ -1,0 +1,60 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Product",
+    "description": "A product from Acme's catalog",
+    "definitions" : {
+    	"contenido":{
+        	"type": "object",
+             "properties" :{
+               
+              	"titulos": {
+            		"type": "array",
+            			"items": {
+                			"type": "string"
+            			},
+            		"minItems": 6
+         
+        		},//end of titulos
+               
+               "filas":{
+                 "type": "array",
+            			"items": {
+                			"type": "object",
+                            "$ref": "#/definitions/valoresFila"
+            			},
+                 "minItems": 6
+               },
+               "fuente":{
+                 "type": "string"
+               }
+               
+             },//end of properties
+             "required" : ["titulos","filas"]
+        },//end of contenido
+        
+        "valoresFila":{
+        	"type": "object",
+             "properties" :{
+               "mes" : {
+                 "type" : "string"
+               },
+               "porcentajes":{
+                 "type" : "array",
+                   "items": {
+                		"type": "number"
+            		},
+                   "minItems": 5
+               }
+             },//end of properties
+             "required" : ["mes", "porcentajes"]
+        }
+    
+    },
+  
+  	"type": "object",
+     "properties":{
+     	"contenido" : {"$ref": "#/definitions/contenido"}
+     },
+  
+    "required": ["contenido"]
+}
