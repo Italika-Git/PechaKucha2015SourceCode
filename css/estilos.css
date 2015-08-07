@@ -370,6 +370,66 @@ span.campoObligatorio::after {
     margin-left:160px;
 }
 
+/* --------------------------------------------------
+Estilos: Optimizacion de Selectores
+-------------------------------------------------- */
+#contenedorPlantilla .pure-table{
+    width: 100%;
+    margin: 1em auto;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+     box-sizing: border-box;         /* Opera/IE 8+ */  
+}
+#contenedorPlantilla .pure-table td, #contenedorPlantilla .pure-table th{
+    text-align: center;
+}
+
+
+#contenedorPlantilla  td:nth-child(1), #contenedorPlantilla  th:nth-child(1) {  
+   text-align: left;
+}
+
+#contenedorPlantilla .pure-table tfoot td{
+    text-align: right;
+    font-size: 10px;
+}
+
+.row-block{
+    display: inline-block;
+    width: 100%;
+}
+
+#textArea-json{
+    resize : vertical;
+    width: 100%;
+    min-height: 460px;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 11px;
+    color: #BB2917;
+     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+     box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.btnActualizar {
+  -webkit-border-radius: 6;
+  -moz-border-radius: 6;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 12px;
+  background: #2ECC71;
+  padding: 10px 10px 10px 11px;
+  margin: 0 0em 1em 0;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+}
+
+.btnActualizar:hover {
+  background: #16A085;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 
 

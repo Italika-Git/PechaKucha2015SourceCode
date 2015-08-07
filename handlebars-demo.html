@@ -29,6 +29,7 @@
         } 
     </script>
     <script type="text/javascript" src="scripts/handlebars.min.js" ></script>
+    <script type="text/javascript" src="scripts/tv4.min.js"></script>
 </head>
 <body>
     <div class="main-container">
@@ -47,10 +48,49 @@
                 <p>Texto</p>
             </div>
         </div>
-                <div class="row">
-            <div id="contenedorTabla" class="column grid_12">
-                
-            </div><!-- End of Contenedor tabla -->
+            <div class="row">
+                <div class="column grid_6">
+                    <textarea id="textArea-json" autocomplete="off">
+{
+  "contenido":
+  {
+    "titulos": ["2015", "Chrome", "IE", "Firefox", "Safari", "Opera"],
+    "filas": [
+    {
+      "mes": "Junio",
+      "porcentajes": [0.648,0.071,0.213,0.038,0.018]
+    },
+    {
+      "mes": "Mayo",
+      "porcentajes":[0.649,0.071,0.215,0.038,0.016]
+    },
+    {
+      "mes": "Abril",
+      "porcentajes":[0.639,0.08,0.216,0.038,0.015]
+    },
+    {
+      "mes": "Marzo",
+      "porcentajes":[0.637,0.077,0.221,0.039,0.015]
+    },
+    {
+      "mes": "Febrero",
+      "porcentajes":[0.625,0.08,0.229,0.039,0.015]
+    },
+    {
+      "mes": "Enero",
+      "porcentajes":[0.619,0.078,0.234,0.038,0.016]
+    }],
+    "fuente": "http://www.w3schools.com/browsers/browsers_stats.asp"
+  }
+}</textarea>
+                </div>
+                <div  class="column grid_6">
+                    <div class="row-block">
+                         <span class="btnActualizar">Actualizar Tabla</span>
+                    </div>
+                     <div id="contenedorPlantilla" class="row-block">
+                    </div><!-- End of Contenedor plantilla -->
+                </div>
         </div>
         <div class="row sectionContainer">
             <div class="column grid_12">
@@ -96,7 +136,7 @@
         </div><!-- end of precode-->
 </div><!-- container -->
 
-<!-- Temaplates -->
+<!-- Templates -->
 <script id="tabla-template" type="text/x-handlebars-template">
 {{#if contenido}}
 {{#with contenido}}
@@ -110,18 +150,32 @@
         </thead>
         <tbody>
             {{#each filas}}
-                <tr>
+                {{#RenderRowStriped this}}
                     <td>{{mes}}</td>
                     {{#each porcentajes}}
                     <td>{{ToPercentString this}}</td>
                     {{/each}}
-                </tr>
+                {{/RenderRowStriped}}
             {{/each}}
         </tbody>
+        {{#if fuente}}
+        <tfoot>
+            <tr>
+                <td colspan="6">Fuente: <a href="{{fuente}}">{{fuente}}</a></td>
+            </tr>
+        </tfoot>
+        {{/if}}
     </table>
 {{/with}}
 {{else}}
-    <p>No hay contenido.</p>
+    <p>{{mensaje}}</p>
+    {{#if errores}}
+        <ul>
+            {{#each errores}}
+                <li>{{dataPath}}: {{message}}</li>
+            {{/each}}
+        </ul>
+    {{/if}}
 {{/if}}
 </script>
 
@@ -131,33 +185,136 @@
     // El objeto jQuery se pasa como parametro
     Init(window.jQuery, window, document);
 }(function ($, window, document) {
-    var context = GetJSONData();
+    
     // DomReady
     $(function () {
+        //mantener en cache la referencia al nodo que contendrá el resultado de la plantilla
+        var $contenedorPlantilla = $('#contenedorPlantilla');
 
-        var theTemplateScript = $("#tabla-template").html();
-        // Compilar el template
-        var theTemplate = Handlebars.compile(theTemplateScript);
+        //Obtener el contenido de la plantilla 
+        var plantillaScript = $("#tabla-template").html();
 
-        // pasar contexto
-        var theCompiledHtml = theTemplate(context);
+        /* Compilar la plantilla: 
+            Handlebars retorna una función de parseo la cual "sabe" donde colocar los valores 
+            del contexto que se pasa como parámetro en dicha función.
+        */
+        var plantillaCompilada = Handlebars.compile(plantillaScript);
 
-        // agregar contenido parseado a contenedor
-        $('#contenedorTabla').html(theCompiledHtml);
+        //Obtener el contexto de la plantilla
+        var context = GetJSONData();
+
+        // Crear contenido con el contexto default
+        var contenidoHTML = plantillaCompilada(context);
+
+        // agregar contenido parseado al contenedor
+        $contenedorPlantilla.append(contenidoHTML);
+
+        //Guardar refrencia de la plantilla (para uso posterior)
+        window.plantillaCompilada = plantillaCompilada;
+
+        //Evento 'Click' para actualizar el contenido
+        $(".btnActualizar").on("click",$contenedorPlantilla,function(sender){
+            //obtener la cadena json del textArea
+            var jsonString = document.getElementById("textArea-json").value;
+             //Parsear la cadena a objeto JSON y actualizar el resultado 
+             ActualizarTabla(jsonString ,$contenedorPlantilla);
+        });
 
     }); //end domReady
 
-   // Helper que convierte el valor decimal del porcentaje a cadena y agrega el símbolo '%'
+   //Helper que convierte el valor decimal del porcentaje a cadena y agrega el símbolo '%'
     Handlebars.registerHelper('ToPercentString', function(percentValue){
         var percentString = (parseFloat(percentValue) * 100).toFixed(1) + '%';
         return percentString;
-  });
+    });
 
-}));// end of anonymous function 
+    //Helper que devuelve un nodo 'tr' 
+    Handlebars.registerHelper('RenderRowStriped', function(context, options){
+        var properties = {};
+        var rowNumber = options.data.index + 1;
+        var filaPar =  rowNumber % 2 == 0;
+        if (filaPar) {
+            properties.class = "pure-table-odd";
+        };
+        var $tr = $("<tr>",properties).html(options.fn(context));
+        return $tr.get(0).outerHTML;
+    });
 
+    //Obtener esquema JSON
+    $.getJSON("data/contenido-schema.json",setContenidoSchema);
+
+}));// end of Jquery Context
+
+
+/**
+ * Actualización de contenido
+*/
+function ActualizarTabla(jsonString, $contenedorPlantilla ){
+    var objetoJSON = CadenaContenidoAJSON(jsonString);
+    var errorMsg = "Whoops! La cadena escribiste no es un objeto JSON válido. Verifica que no tengas un error de sintáxis";
+    if (objetoJSON === undefined) {
+        ReloadTemplate($contenedorPlantilla,{
+            "mensaje" : errorMsg
+        });
+    }else{
+        var result = tv4.validateMultiple(objetoJSON, getContenidoSchema());
+        if (result.valid) {
+            ReloadTemplate($contenedorPlantilla ,objetoJSON);
+        }else{
+            ReloadTemplate($contenedorPlantilla, {
+                "mensaje" : errorMsg,
+                "errores" : result.errors  
+            });
+        }
+    }//end else
+}
+
+function ReloadTemplate($contenedorPlantilla, context){
+    var plantillaCompilada = window.plantillaCompilada;
+    var contenidoHTML = plantillaCompilada(context);
+
+
+    $contenedorPlantilla.fadeOut(200, function(){
+        $contenedorPlantilla.empty();
+        $contenedorPlantilla.append(contenidoHTML).fadeIn(400);
+    });
+  
+}
+
+/**
+ * Obtención de datos: 
+*/
+
+/* Para este ejemplo los datos son obtenidos en 'código duro', para un caso real los datos pueden ser
+    obtenidos como resultado de una llamada a un WebService mediante Ajax
+*/
 function GetJSONData(){
     return {"contenido":{"titulos":["2015","Chrome","IE","Firefox","Safari","Opera"],"filas":[{"mes":"Junio","porcentajes":[0.648,0.071,0.213,0.038,0.018]},{"mes":"Mayo","porcentajes":[0.649,0.071,0.215,0.038,0.016]},{"mes":"Abril","porcentajes":[0.639,0.08,0.216,0.038,0.015]},{"mes":"Marzo","porcentajes":[0.637,0.077,0.221,0.039,0.015]},{"mes":"Febrero","porcentajes":[0.625,0.08,0.229,0.039,0.015]},{"mes":"Enero","porcentajes":[0.619,0.078,0.234,0.038,0.016]}],"fuente":"http://www.w3schools.com/browsers/browsers_stats.asp"}}
 } // end of GetJSONData()
+
+
+/**
+ * UTIL: 
+*/
+
+//Convierte la cadena a objeto JSON
+function CadenaContenidoAJSON(jsonString){
+        var object = undefined;
+        try{
+            object = JSON.parse(jsonString);
+        }catch(ex){
+            return undefined;
+        }
+        return object;
+    }
+
+function setContenidoSchema(schemaObj){
+    tv4.addSchema('http://PechaKucha.com/schema', schemaObj);
+}
+
+function getContenidoSchema(){
+    return tv4.getSchema('http://PechaKucha.com/schema');
+}
 
 </script>
 </body>
