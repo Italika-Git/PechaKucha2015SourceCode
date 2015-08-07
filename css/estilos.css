@@ -294,6 +294,9 @@ Estilos: Un solo Handler
 #listaProductos li{
     margin-bottom:0.5em;
     border-bottom:1px solid #DADFE1;
+}
+
+#listaProductos li:hover{
     cursor: pointer;
 }
 #instruccionesContainer p{
@@ -350,10 +353,10 @@ Estilos: Plugin
     padding: 0.5em;
 }
 #formularioDatos input {
-    margin-bottom:0.5em;
+    margin-bottom: 0.5em;
 }
 .spanFijo {
-    min-width: 132px;
+    min-width: 140px;
     display: inline-block;
     text-align: right;
     margin-right: 4px;
@@ -367,11 +370,11 @@ span.campoObligatorio::after {
     color:#E08283;
 }
 #btn_ValidarFormulario {
-    margin-left:160px;
+    margin-left:168px;
 }
 
 /* --------------------------------------------------
-Estilos: Optimizacion de Selectores
+Estilos: Demo Templates
 -------------------------------------------------- */
 #contenedorPlantilla .pure-table{
     width: 100%;
@@ -392,6 +395,7 @@ Estilos: Optimizacion de Selectores
 #contenedorPlantilla .pure-table tfoot td{
     text-align: right;
     font-size: 10px;
+    background-color: #E0E0E0;
 }
 
 .row-block{
@@ -404,20 +408,19 @@ Estilos: Optimizacion de Selectores
     width: 100%;
     min-height: 460px;
     font-family: Consolas, 'Courier New', monospace;
-    font-size: 11px;
     color: #BB2917;
+    font-size: 11px;
      -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
      -moz-box-sizing: border-box;    /* Firefox, other Gecko */
      box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-.btnActualizar {
+.block-button {
   -webkit-border-radius: 6;
   -moz-border-radius: 6;
   border-radius: 6px;
   color: #ffffff;
   font-size: 12px;
-  background: #2ECC71;
   padding: 10px 10px 10px 11px;
   margin: 0 0em 1em 0;
   text-decoration: none;
@@ -425,11 +428,49 @@ Estilos: Optimizacion de Selectores
   display: block;
 }
 
-.btnActualizar:hover {
-  background: #16A085;
+.block-button:hover {
   text-decoration: none;
   cursor: pointer;
 }
 
+.btn-green{
+  background: #2ECC71;
+}
+.btn-green:hover{
+  background: #16A085;
+}
 
+.btn-blue{
+  background: #3498DB;
+}
+.btn-blue:hover{
+  background: #1E8BC3;
+}
+
+.errorMsg{
+  padding: 0.5em;
+  border: 1px solid #E00E08;
+  background-color: #FDEBEB;
+}
+
+.errorList {
+    list-style: none;
+}
+
+.errorList li{
+  padding: 0 0 0.5em 0;
+  margin: 0;
+}
+
+.errorList li:before {
+  content: "•";
+  color:  #CF000F;
+  margin: inherit;
+  margin-right: .5em; 
+}
+
+.errorList em{
+  color: #CF000F;
+}
+   
 

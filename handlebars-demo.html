@@ -5,7 +5,7 @@
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
     <link rel="shortcut icon" href="img/favicon.ico">
     <title>PechaKucha</title>
-    <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/estilos.css">
     <!--[if lte IE 9]>
     <script type='text/javascript'> location.href = 'errorIE.html';</script>
@@ -34,22 +34,27 @@
 <body>
     <div class="main-container">
         <div class="row">
-            <div id="seccionVolverAlInicio" class="column grid_12">
+            <div id="seccionVolverAlInicio" class="column grid_12 logo-and-text">
+                <img src="img/handlebars_logo.png">
+                <h4 class="sectionHeader">Introducción al uso Plantillas en la Web</h4>
                 <a class="btnInicio" href="index.html">Volver al Indice</a>
             </div>
         </div>
         <div class="row sectionContainer">
             <div class="column grid_12">
-                <h1 class="sectionHeader">Titulo</h1>
+                <h1 class="sectionHeader">Demo uso de Templates</h1>
             </div>
         </div>
         <div class="row">
             <div class="column grid_12">
-                <p>Texto</p>
+                <p>Texto <em class="bold">en negritas</em></p>
             </div>
         </div>
             <div class="row">
                 <div class="column grid_6">
+                    <div class="row-block">
+                         <span  id="btnPredeterminado" class="block-button btn-blue">Predeterminado</span>
+                    </div>
                     <textarea id="textArea-json" autocomplete="off">
 {
   "contenido":
@@ -86,7 +91,7 @@
                 </div>
                 <div  class="column grid_6">
                     <div class="row-block">
-                         <span class="btnActualizar">Actualizar Tabla</span>
+                         <span  id="btnActualizar" class="block-button btn-green">Actualizar Tabla</span>
                     </div>
                      <div id="contenedorPlantilla" class="row-block">
                     </div><!-- End of Contenedor plantilla -->
@@ -99,8 +104,8 @@
         </div>
         <div class="row">
             <div class="column grid_12">
-                <p>Explicacion
-                </p>
+                <p class="bold">Explicacion</p>
+                <p>Explicacion</p>
             </div>
         </div>
         <div class="row">
@@ -129,7 +134,7 @@
     &lt;/table&gt;
 {{/with}}
 {{else}}
-    &lt;p&gt;No hay contenido.&lt;/p&gt;
+    &lt;p&gt;No hay contenido que mostrar.&lt;/p&gt;
 {{/if}}
                 </code>
             </pre>
@@ -168,11 +173,12 @@
     </table>
 {{/with}}
 {{else}}
-    <p>{{mensaje}}</p>
+    <p class="errorMsg">{{mensaje}}</p>
     {{#if errores}}
-        <ul>
+        <h5>Errores Encontrados:</h5>
+        <ul class="errorList">
             {{#each errores}}
-                <li>{{dataPath}}: {{message}}</li>
+                <li class="bold"><em>{{dataPath}}: </em>{{message}}</li>
             {{/each}}
         </ul>
     {{/if}}
@@ -213,11 +219,21 @@
         window.plantillaCompilada = plantillaCompilada;
 
         //Evento 'Click' para actualizar el contenido
-        $(".btnActualizar").on("click",$contenedorPlantilla,function(sender){
+        $("#btnActualizar").on("click",$contenedorPlantilla,function(sender){
             //obtener la cadena json del textArea
             var jsonString = document.getElementById("textArea-json").value;
              //Parsear la cadena a objeto JSON y actualizar el resultado 
              ActualizarTabla(jsonString ,$contenedorPlantilla);
+        });
+
+        //Evento click para cargar contenido predeterminado
+        $("#btnPredeterminado").on("click",$contenedorPlantilla,function(sender){
+            //pasar a cadena el contexto default
+            var jsonString = JSON.stringify(context, null, "  "); 
+            //recargar el template/tabla
+            ReloadTemplate($contenedorPlantilla, context);
+            //setear la cadena como valor del textArea
+            document.getElementById("textArea-json").value = jsonString;
         });
 
     }); //end domReady
@@ -228,7 +244,7 @@
         return percentString;
     });
 
-    //Helper que devuelve un nodo 'tr' 
+    /* Helper que devuelve un nodo 'tr' y deacuerdo a si la fila es par, agrega la clase "pure-table-odd para dar un estilo 'zebra' a la tabla */
     Handlebars.registerHelper('RenderRowStriped', function(context, options){
         var properties = {};
         var rowNumber = options.data.index + 1;
@@ -251,7 +267,7 @@
 */
 function ActualizarTabla(jsonString, $contenedorPlantilla ){
     var objetoJSON = CadenaContenidoAJSON(jsonString);
-    var errorMsg = "Whoops! La cadena escribiste no es un objeto JSON válido. Verifica que no tengas un error de sintáxis";
+    var errorMsg = "Oops! La cadena que escribiste no es un objeto JSON válido. Comprueba que no tengas un error de sintáxis";
     if (objetoJSON === undefined) {
         ReloadTemplate($contenedorPlantilla,{
             "mensaje" : errorMsg
@@ -272,8 +288,7 @@ function ActualizarTabla(jsonString, $contenedorPlantilla ){
 function ReloadTemplate($contenedorPlantilla, context){
     var plantillaCompilada = window.plantillaCompilada;
     var contenidoHTML = plantillaCompilada(context);
-
-
+    //Eliminar el contenido html actual del contenedor e insertar el nuevo.
     $contenedorPlantilla.fadeOut(200, function(){
         $contenedorPlantilla.empty();
         $contenedorPlantilla.append(contenidoHTML).fadeIn(400);
@@ -285,8 +300,7 @@ function ReloadTemplate($contenedorPlantilla, context){
  * Obtención de datos: 
 */
 
-/* Para este ejemplo los datos son obtenidos en 'código duro', para un caso real los datos pueden ser
-    obtenidos como resultado de una llamada a un WebService mediante Ajax
+/* Para este ejemplo los datos son obtenidos en 'código duro', para un caso real los datos pueden ser obtenidos como resultado de una llamada a un WebService mediante Ajax
 */
 function GetJSONData(){
     return {"contenido":{"titulos":["2015","Chrome","IE","Firefox","Safari","Opera"],"filas":[{"mes":"Junio","porcentajes":[0.648,0.071,0.213,0.038,0.018]},{"mes":"Mayo","porcentajes":[0.649,0.071,0.215,0.038,0.016]},{"mes":"Abril","porcentajes":[0.639,0.08,0.216,0.038,0.015]},{"mes":"Marzo","porcentajes":[0.637,0.077,0.221,0.039,0.015]},{"mes":"Febrero","porcentajes":[0.625,0.08,0.229,0.039,0.015]},{"mes":"Enero","porcentajes":[0.619,0.078,0.234,0.038,0.016]}],"fuente":"http://www.w3schools.com/browsers/browsers_stats.asp"}}
