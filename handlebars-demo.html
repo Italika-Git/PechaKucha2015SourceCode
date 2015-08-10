@@ -47,7 +47,7 @@
         </div>
         <div class="row">
             <div class="column grid_12">
-                <p>Texto <em class="bold">en negritas</em></p>
+                <p>Modifique los datos del objeto JSON de la caja de texto y pulse el botón <em class="bold">"Actualizar Tabla"</em> para reflejar los cambios. Intenta agregar más filas a la tabla pero recuerda conservar la estructura del objeto, de lo contrario la plantilla <em class="bold">NO</em> se podrá renderizar y se mostrará un mensaje de error.</p>
             </div>
         </div>
             <div class="row">
@@ -104,8 +104,11 @@
         </div>
         <div class="row">
             <div class="column grid_12">
-                <p class="bold">Explicacion</p>
-                <p>Explicacion</p>
+                <p>Para renderizar el contenido de nuestro objeto JSON definimos una plantilla con la estructura que deseemos presentar que, para el ejemplo dado, los datos se presentan en un elemento <em class="bold">"table"</em>. Utilizando el helper  <em class="bold">"#each"</em>, iteramos el arreglo de títulos y el arreglo de filas del objeto, lo que resultará en que la plantilla repita la misma estructura por cada elemento del arreglo.</p>
+
+                <p>Observa también el uso del helper <em class="bold">"#if"</em>, que analizará si el objeto contiene la propiedad  <em class="bold">"contenido"</em> y caso de que ésta no esté presente o sea nula, la plantilla sólo renderizará el párrafo indicando que no hay contenido por mostrar.</p>
+
+                <p>Por último, hacemos uso del helper <em class="bold">"#with"</em>, que que se encarga de cambiar el nodo raíz de referencia lo que nos permite escribir las expresiones de la plantilla sin necesidad de especificar la propiedad <em class="bold">"contenido"</em>. De lo contrario, en lugar de escribir la expresión: <em class="bold">"{{#each titulos}}"</em>, sin el helper <em class="bold">"#with"</em> hubiéramos tenido que escribir <em class="bold">"{{#each contenido.titulos}}"</em>.</p>
             </div>
         </div>
         <div class="row">
@@ -131,6 +134,13 @@
                 &lt;/tr&gt;
             {{/each}}
         &lt;/tbody&gt;
+        {{#if fuente}}
+        &lt;tfoot&gt;
+            &lt;tr&gt;
+                &lt;td colspan="6"&gt;Fuente: &lt;a href="{{fuente}}"&gt;{{fuente}}&lt;/a&gt;&lt;/td&gt;
+            &lt;/tr>
+        &lt;/tfoot>
+        {{/if}}
     &lt;/table&gt;
 {{/with}}
 {{else}}
@@ -139,6 +149,65 @@
                 </code>
             </pre>
         </div><!-- end of precode-->
+        <!-- uso del la plantilla -->
+    <div class="row sectionContainer">
+            <div class="column grid_12">
+                <h4 class="sectionHeader">Compilación de la plantilla:</h4>
+            </div>
+        </div>
+    <div class="row">
+            <div class="column grid_12">
+                <p>Recuerda que para poder utilizar la plantilla es necesario primero compilarla. Esto se logra con la función <em class="bold">"Handlebars.compile(plantillaScript)"</em> donde Handlebars nos devuelve otra función a la que sólo resta pasar el contexto que queremos presentar en la plantilla:</p>
+            </div>
+    </div>
+     <div class="row">
+            <pre class="column grid_12">
+                <code class="javascript">
+//mantener en cache la referencia al nodo que contendrá el resultado de la plantilla
+var $contenedorPlantilla = $('#contenedorPlantilla');
+
+//Obtener el contenido de la plantilla 
+var plantillaScript = $("#tabla-template").html();
+
+/* Compilar la plantilla: 
+    Handlebars retorna una función de parseo la cual "sabe" donde colocar los valores 
+    del contexto que se pasa como parámetro en dicha función.
+*/
+var plantillaCompilada = Handlebars.compile(plantillaScript);
+
+//Obtener el contexto de la plantilla
+var context = GetJSONData();
+
+// Crear contenido con el contexto default
+var contenidoHTML = plantillaCompilada(context);
+
+// agregar contenido parseado al contenedor
+$contenedorPlantilla.append(contenidoHTML);
+                </code>
+            </pre>
+    </div><!-- end of precode-->
+    <div class="row sectionContainer">
+        <div class="column grid_12">
+            <h4 class="sectionHeader">Custom Helpers:</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column grid_12">
+            <p>Habrás notado que la tabla presenta los resultados en porcentajes, sin embargo, la propiedad <em class="bold">"porcentajes"</em> del objeto JSON está dada en números decimales. Para dar formato a estos valores se utilizó un custom helper denotado en la plantilla como <em class="bold">"{{ToPercentString this}}"</em>. Un custom helper no es más que una función que se agrega al set de funciones de Handlebars en los que podemos realizar operaciones sobre contexto que se ha proporcionado a la plantilla. En el ejemplo, el helper  <em class="bold">"ToPercentString"</em> está definido de la siguiente forma:</p>
+        </div>
+    </div>
+    <div class="row">
+            <pre class="column grid_12">
+                <code class="javascript">
+//Helper que convierte el valor decimal del porcentaje a cadena y agrega el símbolo '%'
+    Handlebars.registerHelper('ToPercentString', function(percentValue){
+        var percentString = (parseFloat(percentValue) * 100).toFixed(1) + '%';
+        return percentString;
+    });                    
+                </code>
+            </pre>
+    </div><!-- end of precode-->
+
 </div><!-- container -->
 
 <!-- Templates -->
