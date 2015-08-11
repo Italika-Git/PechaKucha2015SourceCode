@@ -4,8 +4,8 @@ Código de ejemplo de las presentaciones *"JQuery Tips"* y *"Uso de Plantillas e
 Sólo da clic sobre el botón ![Image of Download Zip](https://raw.githubusercontent.com/Italika-Git/PechaKucha2015SourceCode/master/img/down_zip.png)  que se encuentra a la derecha de esta página para poder descargar todo el contenido a tu computadora.
 ##Cómo visualizar los ejemplos
 Para poder ver y utilizar los ejemplos correctamente **ES NECESARIO** montar el proyecto en un Servidor Web *(IIS, Tomcat, GlassFish, etc.)*. Sólo basta con crear un *directorio virtual* haciendo referencia a la carpeta del proyecto, o bien, si lo prefieres, puedes crear un nuevo proyecto web en tu herramienta IDE preferida. Si no tienes un servidor web a la mano, también puedes intentar con el método alternativo que se detalla más abajo.
-##Probando el proyecto utlizando Moongoose (Opcional)
-Si no tienes un servidor web disponible, puedes hacer uso Moongose. Para ello necesitas:
+##Probando el proyecto utlizando Mongoose (Opcional)
+Si no tienes un servidor web disponible, puedes hacer uso Mongoose. Para ello necesitas:
 
 1. Descargar el progama desde la página: [https://www.cesanta.com/mongoose](https://www.cesanta.com/mongoose).
 2. Copiar el ejecutable **adentro** de la carpeta del proyecto.
