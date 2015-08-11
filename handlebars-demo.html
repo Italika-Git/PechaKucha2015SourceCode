@@ -47,7 +47,7 @@
         </div>
         <div class="row">
             <div class="column grid_12">
-                <p>Modifique los datos del objeto JSON de la caja de texto y pulse el botón <em class="bold">"Actualizar Tabla"</em> para reflejar los cambios. Intenta agregar más filas a la tabla pero recuerda conservar la estructura del objeto, de lo contrario la plantilla <em class="bold">NO</em> se podrá renderizar y se mostrará un mensaje de error.</p>
+                <p>Modifica los valores del objeto JSON de la caja de texto y pulsa el botón <em class="bold">"Actualizar Tabla"</em> para reflejar los cambios. Intenta agregar más filas a la tabla pero recuerda conservar la estructura del objeto, de lo contrario la plantilla <em class="bold">NO</em> se podrá renderizar y se mostrará un mensaje de error.</p>
             </div>
         </div>
             <div class="row">
@@ -104,11 +104,11 @@
         </div>
         <div class="row">
             <div class="column grid_12">
-                <p>Para renderizar el contenido de nuestro objeto JSON definimos una plantilla con la estructura que deseemos presentar que, para el ejemplo dado, los datos se presentan en un elemento <em class="bold">"table"</em>. Utilizando el helper  <em class="bold">"#each"</em>, iteramos el arreglo de títulos y el arreglo de filas del objeto, lo que resultará en que la plantilla repita la misma estructura por cada elemento del arreglo.</p>
+                <p>Para renderizar el contenido de nuestro objeto JSON definimos una plantilla con la estructura que en la que vamos presentar los datos. Para el ejemplo dado, los datos se muestran en un elemento <em class="bold">"table"</em>. Utilizando el helper  <em class="bold">"#each"</em>, iteramos el arreglo de títulos y el arreglo de filas del objeto, lo que resultará en que la plantilla repita la misma estructura por cada elemento del arreglo.</p>
 
                 <p>Observa también el uso del helper <em class="bold">"#if"</em>, que analizará si el objeto contiene la propiedad  <em class="bold">"contenido"</em> y caso de que ésta no esté presente o sea nula, la plantilla sólo renderizará el párrafo indicando que no hay contenido por mostrar.</p>
 
-                <p>Por último, hacemos uso del helper <em class="bold">"#with"</em>, que que se encarga de cambiar el nodo raíz de referencia lo que nos permite escribir las expresiones de la plantilla sin necesidad de especificar la propiedad <em class="bold">"contenido"</em>. De lo contrario, en lugar de escribir la expresión: <em class="bold">"{{#each titulos}}"</em>, sin el helper <em class="bold">"#with"</em> hubiéramos tenido que escribir <em class="bold">"{{#each contenido.titulos}}"</em>.</p>
+                <p>Por último, hacemos uso del helper <em class="bold">"#with"</em>, que que se encarga de cambiar el nodo raíz de referencia lo que nos permite escribir las expresiones de la plantilla sin necesidad de especificar la propiedad <em class="bold">"contenido"</em>. De lo contrario, en lugar de escribir la expresión: <em class="bold">"{{#each titulos}}"</em> por ejemplo, sin el uso del helper <em class="bold">"#with"</em>, hubiéramos tenido que escribir <em class="bold">"{{#each contenido.titulos}}"</em>.</p>
             </div>
         </div>
         <div class="row">

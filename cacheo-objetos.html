@@ -44,15 +44,14 @@
         </div>
         <div class="row">
             <div class="column grid_12">
-                <p>El objetivo del este ejemplo es demostrar el uso de caché con los objetos creados con JQuery para modificar varias propiedades a la vez. Recuerda que cada llamada a un selector retorna un nuevo objeto lo que incrementa el uso de memoria.
+                <p>El ejemplo siguiente modfica varias propiedades del párrafo: <em class="bold">"Párrafo sin estilo"</em> por lo que es  conveniente almacenar en una variable el objeto jQuery para modificar varias propiedades a la vez. Recuerda que cada llamada a un selector retorna un nuevo objeto, lo que incrementa el uso de memoria.
                 </p>
             </div>
         </div>
         <div class="row">
             <div id="contenedorParrafo" class="column grid_12">
                 <button id="btn_MostrarParrafo" type="button">Cambiar Párrafo!</button>
-                <p
-                >Parrafo sin estilo.</p>
+                <p>Parrafo sin estilo.</p>
             </div>
         </div>
         <div class="row sectionContainer">
@@ -62,8 +61,12 @@
         </div>
         <div class="row">
             <div class="column grid_12">
-                <p>El ejemplo anterior realiza varias operaciones sobre el mismo nodo <em class="bold">&lt;p&gt;</em>, por lo que resulta conveniente realizar el cacheo del nodo en una variable evitando también, repetir código.
-                </p>
+                <p>El código siguiente presenta 3 formas de modifcar el nodo <em class="bold">&lt;p&gt;</em>:</p>
+                <ol>
+                    <li>Ejecutando el mismo selector en cada instucción a invocar. <em>Más código, menor mantenimiento, más memoria.</em></li>
+                    <li>Almancenando el selector en una varibale. <em>Uso de caché, mayor rendimiento.</em></li>
+                    <li>Aprovechando la capacidad de encadenamiento <em>&laquo;chaining&raquo;</em> de los métodos. <em>Mejor sintáxis, menos código.</em></li>
+                </ol>
             </div>
         </div>
         <div class="row">

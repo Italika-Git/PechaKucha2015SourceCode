@@ -45,8 +45,7 @@
         </div>
         <div class="row">
             <div class="column grid_12">
-                <p>El siguiente ejemplo valida los campos del formulario que se encuentran vacíos. Esto se realiza mediante el uso de un plugin que obtiene el valor del campo de texto a evaluar y de si éste se encuentra vacío un clase CSS que establece en rojo el color de fondo del elemento.
-                </p>
+                <p>El siguiente ejemplo valida los campos del formulario. Si el valor de éstos es nulo o vacío, serán marcados en rojo.</p>
             </div>
         </div>
         <div class="row">
@@ -73,8 +72,8 @@
         </div>
         <div class="row">
             <div class="column grid_12">
-                <p>Vemos que el  plugin no es más que una función que se agrega o <em>&laquo;extiende&raquo;</em> a la lista de métodos de jQuery. Para el ejemplo mostrado, la función evalua el valor del nodo <em class="bold">(this)</em> del objeto jQuery que está invocando la función <em>"ValidarObligatorio()"</em> el resultado <em>&laquo;true o false&raquo;</em> se pasa como segundo argumento de la función <a href="http://api.jquery.com/toggleClass/"><em>"toggleClass()"</em></a> que activará o desactivará la clase CSS <em>"campoObligatorio"</em> según sea el caso.
-                </p>
+                <p>Un plugin de jQuery no es más que una función que se agrega o <em>&laquo;extiende&raquo;</em> la lista de métodos disponibles en un objeto jQuery. 
+                <p>Para el ejemplo mostrado, el plugin evalúa el valor del nodo <em class="bold">(this)</em> del objeto jQuery que ha invocando la función <em class="bold">"ValidarObligatorio()"</em>. Usando el resultado de la evaluación <em>&laquo;true o false&raquo;</em>, invocamos otra de las funciones disponibles en jQuery: <a href="http://api.jquery.com/toggleClass/"><em>"toggleClass()"</em></a> que activará o desactivará la clase CSS <em class="bold">"campoObligatorio"</em> en el nodo deacuerdo al valor <span class="bold">booleano</span> povisto en el segundo parámetro.</p>
             </div>
         </div>
         <div class="row">
@@ -87,12 +86,9 @@ $.extend($.fn, {
             var vacio = this.value.trim() === "";
             //pasar 'this' a objeto JQuery
             var campo = $(this);
-             /*Añadir y quitar clase 'campoObligatorio' 
+             /* Añadir y/o quitar clase 'campoObligatorio' 
              dependiendo si el valor del campo está vacío */
             campo.toggleClass('campoObligatorio',vacio);
-            /*También agregar/quitar clase al nodo previo 
-            inmediato (etiqueta 'span') */
-            campo.prev().toggleClass('campoObligatorio',vacio);
         });
     } //fin de la funcion
 });//fin de extend
@@ -101,12 +97,12 @@ $.extend($.fn, {
         </div><!-- end of precode-->
         <div class="row">
             <div class="column grid_12">
-                <p>La manera de usar el plugin es igual a como si se tratara de cualquier otra función de la API: 
+                <p>La manera de usar el plugin es exactamente la misma a como si se tratara de cualquier otra función de la API: 
                 </p>
                 <ol>
                     <li>Se obtiene el o los objetos jQuery sobre los que se aplicará la función.
                     </li>
-                    <li>Se invoca la función <em>"ValidarObligatorio()"</em> sobre el objeto jQuery obtenido del selector.
+                    <li>Se invoca la función <em class="bold">"ValidarObligatorio()"</em> sobre el objeto jQuery obtenido del selector.
                     </li>
                 </ol>
             </div>

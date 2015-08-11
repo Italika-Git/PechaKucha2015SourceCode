@@ -58,7 +58,7 @@
         </div>
         <div class="row">
             <div class="column grid_12">
-                <p>1.- Hacer referencia al CDN  de google para descargar la librería de JQuery con script de fallback en caso de que el acceso a la URL no esté disponible.
+                <p>Hacemos referencia al <span class="bold">CDN</span>  de Google para descargar la librería de JQuery. Posteriormente, agregamos un script de <em>fallback</em> en caso de que el acceso a la URL no esté disponible.
                 </p>
             </div>
         </div>
@@ -71,14 +71,14 @@
 var cargadoLocalmente = false;
     if (typeof jQuery === 'undefined') {
         cargadoLocalmente = true;
-        document.write(unescape('%3Cscript src="/scripts/jquery.min.js"%3E%3C/script%3E'));
+        document.write(unescape('&lt;script src="/scripts/jquery.min.js"&gt;&lt;/script&gt;'));
     } 
                 </code>
             </pre>
         </div><!-- end of precode-->
         <div class="row">
             <div class="column grid_12">
-                <p>2.- El siguiente código se ejecuta después del evento <em class="bold">'document.ready()'</em> que crea un nuevo nodo <em class="bold">&lt;p&gt;</em> que mostrará el mensaje de resultado dependiendo de si la librería ha sido cargada desde el CDN o localmente.</p>
+                <p>El siguiente código se ejecuta después del evento <em class="bold">'document.ready()'</em> que crea un nuevo nodo <em class="bold">&lt;p&gt;</em> que mostrará un mensaje de resultado indicando si la librería ha sido cargada desde el CDN o desde el servidor local.</p>
             </div>
         </div>
         <div class="row">
