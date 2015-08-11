@@ -6,33 +6,23 @@
     <title>PechaKucha</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/estilos.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>
-        var cargadoLocalmente = false;
-        if (typeof jQuery === 'undefined') {
-            cargadoLocalmente = true;
-            document.write(unescape('%3Cscript src="scripts/jquery.min.js"%3E%3C/script%3E'));
-        } 
-    </script>
 </head>
 <body>
     <div class="main-container">
-        <div id="pechaKucha-Container" class="row sectionContainer">
+        <div class="row sectionContainer logo-and-text">
             <div class="column grid_12">
-                <img src="img/pk-logo.png">
+                <img src="img/pk-logo.png"><h3>Source Code</h3>
             </div>
         </div>
         <div class="row">
             <div class="column grid_12">
-                <p>Versión de Navegador no soportada!</p>
+                <p class="errorMsg">Oops! Tu versión de navegador no está soportada, intenta con <em class="bold">Chrome</em> o <em class="bold">Firefox!</em>
+                <br>
+                <br>
+                PD: De cualquier forma no deberías usar Internet Explorer :P</p>
             </div>
         </div>
 
 </div><!-- container -->
-
-<script type="text/javascript">
-//<![CDATA[ 
-//]]>  
-</script>
 </body>
 </html>
