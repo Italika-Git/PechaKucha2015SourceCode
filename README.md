@@ -5,9 +5,9 @@ Sólo da clic sobre el botón ![Image of Download Zip](https://raw.githubusercon
 ##Cómo visualizar los ejemplos
 Para poder ver y utilizar los ejemplos correctamente **ES NECESARIO** montar el proyecto en un Servidor Web *(IIS, Tomcat, GlassFish, etc.)*. Sólo basta con crear un *directorio virtual* haciendo referencia a la carpeta del proyecto, o bien, si lo prefieres, puedes crear un nuevo proyecto web en tu herramienta IDE preferida. Si no tienes un servidor web a la mano, también puedes intentar con el método alternativo que se detalla más abajo.
 ##Probando el proyecto utlizando Mongoose (Opcional)
-Si no tienes un servidor web disponible, puedes hacer uso Mongoose. Para ello necesitas:
+Si no tienes un servidor web disponible, puedes hacer uso de Mongoose. Para ello necesitas:
 
-1. Descargar el progama desde la página: [https://www.cesanta.com/mongoose](https://www.cesanta.com/mongoose).
+1. Descargar el programa desde la página: [https://www.cesanta.com/mongoose](https://www.cesanta.com/mongoose).
 2. Copiar el ejecutable **adentro** de la carpeta del proyecto.
 3. Ejecutar el programa y abrir el navegador con la dirección: [http://127.0.0.1:8080/](http://127.0.0.1:8080/)
 
